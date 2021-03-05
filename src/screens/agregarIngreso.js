@@ -3,7 +3,7 @@ import {Container,View,Header,Item,Input,Icon,Button,Content,Spinner, Left} from
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import {ContextoIngresos} from "../src/context/ingresoContext";
+import {ContextoIngresos} from "../../src/Context/ingresoContext";
 import * as Font from "expo-font";
 
 const { width, height } = Dimensions.get("window");
@@ -18,17 +18,17 @@ const { width, height } = Dimensions.get("window");
           const [enableSave, setEnableSave] = useState(true);
           const [errorDescripcion, setErrorDescripcion] = useState(false);
           
-          useEffect(() => {
+          /*useEffect(() => {
             const loadFontsAsync = async () => {
               await Font.loadAsync({
-                Roboto_medium: require("../node_modules/native-base/Fonts/Roboto_medium.ttf"),
+                Roboto_medium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
               }).then(() => {
                 setFontsLoaded(true);
               });
             };
         
             loadFontsAsync();
-          }, []);
+          }, []);*/
          
           // Ejecutar el efecto cuando el valor de la nota cambie
             useEffect(() => {
@@ -58,11 +58,11 @@ const { width, height } = Dimensions.get("window");
             return (
                 <Container style={styles.Fondo}  >
                   <Header style={styles.header}>
-                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                    <Left><Image source={require("../../assets/logoSimbolo.png")} style={styles.logoImage} />
                     </Left>
                 </Header>
                      <LinearGradient 
-                        colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
+                        colors={[ '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                         style={styles.LinearGradient}
                         start={{ x: 1, y: 1 }}
                         end={{ x: 1, y: 0 }}> 

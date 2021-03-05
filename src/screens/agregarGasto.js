@@ -2,12 +2,11 @@ import React, {  useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left} from "native-base";
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
-
 import { LinearGradient } from 'expo-linear-gradient';
-import {ContextoGastos} from "../src/context/movimientosContext";
+import {ContextoGastos} from "../../src/Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
-import {ContextoCategorias} from "../src/context/categoriasContext"
+import {ContextoCategorias} from "../Context/categoriasContext"
 import * as Font from "expo-font";
 
  const agregarGasto  = ({ navigation }) =>{ 
@@ -26,17 +25,17 @@ import * as Font from "expo-font";
 
 
           
-          useEffect(() => {
+          /*useEffect(() => {
             const loadFontsAsync = async () => {
               await Font.loadAsync({
-                Roboto_medium: require("../node_modules/native-base/Fonts/Roboto_medium.ttf"),
+                Roboto_medium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
               }).then(() => {
                 setFontsLoaded(true);
               });
             };
         
             loadFontsAsync();
-          }, []);
+          }, []);*/
          
           // Ejecutar el efecto cuando el valor de la nota cambie
             useEffect(() => {
@@ -58,7 +57,6 @@ import * as Font from "expo-font";
             }         
           };
 
-
           
           if (!fontsLoaded)
           return (
@@ -72,13 +70,13 @@ import * as Font from "expo-font";
                 <Container style={styles.Fondo}  >
                     
                      <LinearGradient 
-                        colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
+                        colors={['#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                         style={styles.LinearGradient}
                         start={{ x: 1, y: 1 }}
                         end={{ x: 1, y: 0 }}> 
                         <View >
                             
-                            <Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                            <Image source={require("../../assets/logoSimbolo.png")} style={styles.logoImage} />
                     
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>

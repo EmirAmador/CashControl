@@ -2,28 +2,52 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
-import agregarGasto from './src/screens/agregarGasto';
-import agregarIngreso from './src/screens/agregarIngreso';
-import ahorros from './src/screens/ahorros';
-import balance from './src/screens/balance';
-import listadoGastos from './src/screens/listadoGastos';
-import listadoIngresos from './src/screens/listadoIngresos';
-import login from './src/screens/login';
-import mainScreen from "./src/screens/mainScreen";
-import registroUsuario from './src/screens/registroUsuario';
+import mainScreen from "./src/screens/mainScreen"
+import pantallaIngresos from "./src/screens/listadoIngresos"
+import pantallaGastos from "./src/screens/listadoGastos"
+import AgregarGastos from './src/screens/agregarGasto'
+import balance from './src/screens/balance'
+import * as SplashScreen from "expo-splash-screen";
+import useDatabase from "./src/hooks/useDataBase";
+import { GastosContextProvider } from "./src/Context/ContextoGasto";
+//import modificarGasto from './src/modificarGasto';
+import {CategoriaContextProvider} from "./src/Context/categoriasContext"
+import { IngresosContextProvider } from "./src/Context/ingresoContext";
+import agregarIngreso from './src/screens/agregarIngreso'
+//import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
 
 export default function App() {
 
-  return (
-     
+ SplashScreen.preventAutoHideAsync();
+
+  const isLoadingComplete = useDatabase();
+
+  // Ocutar la pantalla de splash
+  if (isLoadingComplete) SplashScreen.hideAsync();
+
+  //falta poner la etiqueta movesContextProvider , revisar github
+ return (
+    
+  <GastosContextProvider>
+    <CategoriaContextProvider>
+    <IngresosContextProvider> 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
-        <Stack.Screen name="listadoGastos" component={listadoGastos} />
-      </Stack.Navigator>
-      
+    <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
+      <Stack.Screen name="mainScreen" component={mainScreen} />
+      <Stack.Screen name="agregarGastos" component={AgregarGastos} />
+      <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
+      <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
+      <Stack.Screen name="balance" component={balance} />
+      <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+    </Stack.Navigator>
   </NavigationContainer>  
+  </IngresosContextProvider> 
+  </CategoriaContextProvider>
+  </GastosContextProvider> 
+ 
+
   );
 }
 

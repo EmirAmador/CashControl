@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useState } from "react";
-import { database } from "../../components/bd";
+import { database } from "../components/bd";
 
 // Crear el contexto de las notas
 export const ContextoGastos = createContext({});

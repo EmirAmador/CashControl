@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { StyleSheet, TouchableOpacity, Text, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("screen");
@@ -29,3 +29,4 @@ const styles = StyleSheet.create({
 });
 
 export default Button;
+*/
