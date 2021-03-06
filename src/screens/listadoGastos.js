@@ -1,8 +1,9 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fab,Left,Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
+import { List } from "../components/List";
 const { width, height } = Dimensions.get("window");
 
 const listadoGastos = ({ navigation }) => { 

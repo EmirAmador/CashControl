@@ -13,7 +13,8 @@ import { GastosContextProvider } from "./src/Context/ContextoGasto";
 //import modificarGasto from './src/modificarGasto';
 import {CategoriaContextProvider} from "./src/Context/categoriasContext"
 import { IngresosContextProvider } from "./src/Context/ingresoContext";
-import agregarIngreso from './src/screens/agregarIngreso'
+import agregarIngreso from './src/screens/agregarIngreso';
+import  registro  from "./src/screens/registroUsuario";
 //import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
@@ -34,13 +35,15 @@ export default function App() {
     <CategoriaContextProvider>
     <IngresosContextProvider> 
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
+    <Stack.Navigator initialRouteName="registro" headerMode = 'none'>
       <Stack.Screen name="mainScreen" component={mainScreen} />
       <Stack.Screen name="agregarGastos" component={AgregarGastos} />
       <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
       <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
       <Stack.Screen name="balance" component={balance} />
       <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+      <Stack.Screen name="registro" component={registro} />
+
     </Stack.Navigator>
   </NavigationContainer>  
   </IngresosContextProvider> 

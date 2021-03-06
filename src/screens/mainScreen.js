@@ -1,9 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Button} from "native-base";
+import {Container,View,Header} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { LinearGradient } from 'expo-linear-gradient';
-
+import Button from "../components/Button"
 const { width, height } = Dimensions.get("window");
 
 const mainScreen = ({ navigation }) => { 
@@ -18,7 +18,10 @@ const mainScreen = ({ navigation }) => {
                     <View >
                     
                         <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
-                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
+                        <Button  style={styles.botonIngresos}  title="Back" 
+                            callback={() => {
+                                navigation.navigate("pantallaIngresos");
+                            }} > 
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
+/*import React, { Component, useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,22 +19,7 @@ const List= () => {
     }):null; 
    console.log(suma);
 return (
-    <Container style={styles.Fondo}>
-         
-        
-        <LinearGradient 
-           colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
-           style={styles.LinearGradient}
-           start={{ x: 1, y: 1 }}
-           end={{ x: 1, y: 0 }}> 
-           <View >
-                <Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
-            
-               <Text style={styles.h1}>Gastos</Text>
-               <View style={styles.divisor}/>
-               
-               <Card style={styles.lista}>
-                   <ScrollView>
+
                       <List>
                             
                          {gastosAlimentacion != "" ?
@@ -217,29 +202,7 @@ return (
                                
                       
                          
-                    </ScrollView>
-                    <View>
-                        <Text style={styles.textoTotal} >Total: {suma}</Text>
-                    </View>
-                </Card>
-                <Fab
-                    active={true}
-                    position="bottomRight"
-                    style={{ backgroundColor: "#ff0023" }}
-                    direction="up"
-                    onPress={() => {
-                        navigation.navigate("agregarGastos")
-                    }}
-                    >
-                    <Icon name="plus" type="FontAwesome" />
-                    </Fab>
-             
-
-
-            </View>
-            
-        </LinearGradient>
-    </Container>
+                   
  
 );                  
 }
@@ -324,3 +287,4 @@ fontSize:15,
 color: '#236266',
 }
 });
+*/
