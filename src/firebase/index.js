@@ -24,5 +24,5 @@ const firebaseConfig = {
 
 // Iniciarlizar firebase si no existe una instancia ejecutándose
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-
+console.log(firebase);
 export { firebase };

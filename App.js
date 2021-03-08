@@ -17,7 +17,7 @@ import {CategoriaContextProvider} from "./src/Context/categoriasContext"
 import { IngresosContextProvider } from "./src/Context/ingresoContext";
 import agregarIngreso from './src/screens/agregarIngreso';
 import  registro  from "./src/screens/registroUsuario";
-import {  } from "./src/components/theme";
+import { theme } from "./src/components/theme";
 //import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
@@ -33,7 +33,7 @@ export default function App() {
 
   //falta poner la etiqueta movesContextProvider , revisar github
  return (
-    <TeamProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <SafeAreaProvider>
       <GastosContextProvider>
         <CategoriaContextProvider>
@@ -46,7 +46,7 @@ export default function App() {
           <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
           <Stack.Screen name="balance" component={balance} />
           <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
-          <Stack.Screen name="registro" component={registro} />
+          <Stack.Screen name="registro" component={registro}  />
 
         </Stack.Navigator>
       </NavigationContainer>  
@@ -55,7 +55,7 @@ export default function App() {
       </GastosContextProvider> 
  
       </SafeAreaProvider>
-    </TeamProvider>
+    </ThemeProvider>
 
 
   );

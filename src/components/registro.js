@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Input, Button } from "react-native-elements";
+import { Input} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebase } from "../firebase";
 import { validate } from "email-validator";
 import Alert from "../components/shared/Shared";
+import Button  from "../components/Button";
 
-const formRegistro = ({ navigation }) => {
+const FormRegistro = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -135,11 +136,11 @@ const formRegistro = ({ navigation }) => {
             : ""
         }
       />
-      <Button title="Create account" onPress={handleSignup} />
+      <Button  title="Registrarse" ></Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({});
 
-export default formRegistro;
+export default FormRegistro;

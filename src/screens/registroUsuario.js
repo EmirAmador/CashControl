@@ -3,8 +3,7 @@ import React, { Component, useEffect, useState } from "react";
 import { StyleSheet,Dimensions, Image} from "react-native";
 import {Container,View,Header} from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
-import Button  from "../components/Button";
-import { formRegistro } from "../components/registro";
+import FormRegistro  from "../components/registro";
 const { width, height } = Dimensions.get("window");
 
 const registro = ({ navigation }) => {
@@ -21,11 +20,11 @@ const registro = ({ navigation }) => {
             </LinearGradient>
             </View>
             <View style={styles.vistaFlotante} >
-             <formRegistro/>   
+             <FormRegistro navigation={navigation}/>   
              
             </View>
             <View style={styles.vistaBoton}>
-                <Button  title="Registrarse" ></Button>
+                
 
             </View>
 
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
             height:height * 0.40,
             alignSelf: "center",
             marginTop:-50,
-            borderColor: "#0000000",
+            //borderColor: "#0000000",
             shadowRadius: 9,
             shadowOpacity: 0.2,
             shadowColor: "#000000",
