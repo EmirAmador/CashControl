@@ -4,6 +4,7 @@ import { StyleSheet,Dimensions, Image} from "react-native";
 import {Container,View,Header} from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
 import Button  from "../components/Button";
+import { formRegistro } from "../components/registro";
 const { width, height } = Dimensions.get("window");
 
 const registro = ({ navigation }) => {
@@ -20,14 +21,8 @@ const registro = ({ navigation }) => {
             </LinearGradient>
             </View>
             <View style={styles.vistaFlotante} >
-              <Item>
-                <Text>
-                  Usuario
-                </Text>
-                <Input>
-                </Input>
-              </Item>
-              <Item></Item>
+             <formRegistro/>   
+             
             </View>
             <View style={styles.vistaBoton}>
                 <Button  title="Registrarse" ></Button>
