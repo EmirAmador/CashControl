@@ -1,4 +1,4 @@
-import { Text } from "native-base";
+import { Input, Item, Text } from "native-base";
 import React, { Component, useEffect, useState } from "react";
 import { StyleSheet,Dimensions, Image} from "react-native";
 import {Container,View,Header} from "native-base";
@@ -20,7 +20,14 @@ const registro = ({ navigation }) => {
             </LinearGradient>
             </View>
             <View style={styles.vistaFlotante} >
-
+              <Item>
+                <Text>
+                  Usuario
+                </Text>
+                <Input>
+                </Input>
+              </Item>
+              <Item></Item>
             </View>
             <View style={styles.vistaBoton}>
                 <Button  title="Registrarse" ></Button>

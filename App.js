@@ -10,6 +10,8 @@ import balance from './src/screens/balance'
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDataBase";
 import { GastosContextProvider } from "./src/Context/ContextoGasto";
+import { ThemeProvider } from "react-native-elements";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 //import modificarGasto from './src/modificarGasto';
 import {CategoriaContextProvider} from "./src/Context/categoriasContext"
 import { IngresosContextProvider } from "./src/Context/ingresoContext";
@@ -30,26 +32,30 @@ export default function App() {
 
   //falta poner la etiqueta movesContextProvider , revisar github
  return (
-    
-  <GastosContextProvider>
-    <CategoriaContextProvider>
-    <IngresosContextProvider> 
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="registro" headerMode = 'none'>
-      <Stack.Screen name="mainScreen" component={mainScreen} />
-      <Stack.Screen name="agregarGastos" component={AgregarGastos} />
-      <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
-      <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
-      <Stack.Screen name="balance" component={balance} />
-      <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
-      <Stack.Screen name="registro" component={registro} />
+    <TeamProvider>
+      <SafeAreaProvider>
+      <GastosContextProvider>
+        <CategoriaContextProvider>
+        <IngresosContextProvider> 
+        <NavigationContainer>
+        <Stack.Navigator initialRouteName="registro" headerMode = 'none'>
+          <Stack.Screen name="mainScreen" component={mainScreen} />
+          <Stack.Screen name="agregarGastos" component={AgregarGastos} />
+          <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
+          <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
+          <Stack.Screen name="balance" component={balance} />
+          <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+          <Stack.Screen name="registro" component={registro} />
 
-    </Stack.Navigator>
-  </NavigationContainer>  
-  </IngresosContextProvider> 
-  </CategoriaContextProvider>
-  </GastosContextProvider> 
+        </Stack.Navigator>
+      </NavigationContainer>  
+      </IngresosContextProvider> 
+      </CategoriaContextProvider>
+      </GastosContextProvider> 
  
+      </SafeAreaProvider>
+    </TeamProvider>
+
 
   );
 }
