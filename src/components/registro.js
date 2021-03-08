@@ -4,7 +4,7 @@ import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebase } from "../firebase";
 import { validate } from "email-validator";
-import Alert from "../shared/Alert";
+import Alert from "../components/shared/Shared";
 
 const formRegistro = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
