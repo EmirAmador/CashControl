@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Input} from "react-native-elements";
+import { StyleSheet, View ,Dimensions } from "react-native";
+import { Input,Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebase } from "../firebase";
 import { validate } from "email-validator";
 import Alert from "../components/shared/Shared";
-import Button  from "../components/Button";
+//import Button  from "../components/Button";
+const { width, height } = Dimensions.get("window");
 
 const FormRegistro = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
@@ -136,11 +137,24 @@ const FormRegistro = ({ navigation }) => {
             : ""
         }
       />
-      <Button  title="Registrarse" ></Button>
+       <View style={styles.vistaBoton}>
+       <Button  title="Registrarse" onPress={handleSignup} ></Button>
+     
+
+                </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    vistaBoton:{
+        alignSelf:"center",
+        alignContent:"center",
+        alignItems:"center",
+        justifyContent:"center",
+        width : width,
+        height : height*0.20
+    },
+});
 
 export default FormRegistro;
