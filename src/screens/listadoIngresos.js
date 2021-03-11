@@ -5,19 +5,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
 
-const listadoGastos = ({ navigation }) => { 
+const listadoIngresos = ({ navigation }) => { 
 
        return (
             <Container style={styles.fondo}>
                 <LinearGradient 
-                   colors={['#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
-                   style={styles.linearGradient}
-                   start={{ x: 1, y: 1 }}
-                   end={{ x: 1, y: 0 }}> 
+                    colors={['#480048','#C04848']} 
+                    style={styles.LinearGradient}
+                    start={{ x: 0, y: 1 }}
+                    end={{ x: 1, y: 0 }}> 
                    <View>
-                        <Header style={styles.header}>
-
-                        </Header>
+                        
                     
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
@@ -36,7 +34,7 @@ const listadoGastos = ({ navigation }) => {
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#ff0023" }}
+                            style={{ backgroundColor: "#C70039" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarGastos")
@@ -71,11 +69,11 @@ const styles = StyleSheet.create({
         fontSize: 33,
         textAlign:"center",
         marginTop: 0,
-        color: '#236266',
+        color: '#ffffff',
     },
 
     divisor:{
-        borderBottomColor: '#236266',
+        borderBottomColor: '#000000',
         borderBottomWidth: 2,
         width: width * 0.9,
         alignSelf: "center"
@@ -103,7 +101,7 @@ const styles = StyleSheet.create({
 
     boton: {
         alignContent:"center",
-        backgroundColor: "#31898F",
+        backgroundColor: "#C70039",
         borderRadius: 40,
         marginLeft: 290,
         position: "absolute",
@@ -118,4 +116,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default listadoGastos;
+export default listadoIngresos;

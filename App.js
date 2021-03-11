@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/screens/mainScreen"
-import pantallaIngresos from "./src/screens/listadoIngresos"
+import listadoIngresos from "./src/screens/listadoIngresos"
 import pantallaGastos from "./src/screens/listadoGastos"
 import AgregarGastos from './src/screens/agregarGasto'
 import balance from './src/screens/balance'
@@ -19,6 +19,7 @@ import agregarIngreso from './src/screens/agregarIngreso';
 import  registro  from "./src/screens/registroUsuario";
 import { theme } from "./src/components/theme";
 import PersistLogin from "./src/utils/persistLogin";
+import { Footer } from 'native-base';
 
 //import modificarIngreso from './src/screens/modificarIngreso';
 
@@ -37,7 +38,6 @@ export default function App() {
 
   // Ocutar la pantalla de splash
   if (isLoadingComplete) SplashScreen.hideAsync();
- // Verificar si ya existen credenciales de autenticación
 
  return (
     <ThemeProvider theme={theme}>
@@ -48,22 +48,22 @@ export default function App() {
         <NavigationContainer>
         <Stack.Navigator >
           {user ? (
-            <Stack.Screen name="mainScreen" component={mainScreen} initialParams={{user:user}}/>
-
+            <Stack.Screen name="mainScreen" component={mainScreen} initialParams={{user:user}}
+            options={{headerShown:false}}/>
           ):(
             <>
             <Stack.Screen  name="registro" component={registro} initialParams={{userCreated:false}}
             options={{headerShown:false}}/>
-            <Stack.Screen name="mainScreen" component={mainScreen} />
+
+          
+          </>
+          )}
           <Stack.Screen name="agregarGastos" component={AgregarGastos} />
-          <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
+          <Stack.Screen name="listadoIngresos" component={listadoIngresos} options={{headerTitle:'Ingresos'}} />
           <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
           <Stack.Screen name="balance" component={balance} />
           <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
-          <Stack.Screen name="registro" component={registro}  />
-          </>
-          )}
-       
+          
         </Stack.Navigator>
       </NavigationContainer>  
       </IngresosContextProvider> 

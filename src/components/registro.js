@@ -67,7 +67,7 @@ const FormRegistro = ({ navigation }) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate("Home");
+            navigation.navigate("mainScreen");
           })
           .catch((error) => {
             console.log(error);

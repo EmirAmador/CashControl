@@ -1,9 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header} from "native-base";
-import { StyleSheet, Text,Dimensions, Image} from "react-native";
+import {Container,View,Header,Button} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import Button from "../components/Button"
+import { NavigationContainer} from '@react-navigation/native';
+
 const { width, height } = Dimensions.get("window");
 
 const mainScreen = ({ navigation }) => { 
@@ -11,17 +12,14 @@ const mainScreen = ({ navigation }) => {
        return (
             <Container style={styles.Fondo}  >
                  <LinearGradient 
-                    colors={['#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
-                    style={styles.LinearGradient}
-                    start={{ x: 1, y: 1 }}
-                    end={{ x: 1, y: 0 }}> 
+                     colors={['#480048','#C04848']} 
+                     style={styles.LinearGradient}
+                     start={{ x: 0, y: 1 }}
+                     end={{ x: 1, y: 0 }}> 
                     <View >
                     
                         <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
-                        <Button  style={styles.botonIngresos}  title="Back" 
-                            callback={() => {
-                                navigation.navigate("pantallaIngresos");
-                            }} > 
+                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 

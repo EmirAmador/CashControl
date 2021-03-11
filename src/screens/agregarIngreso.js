@@ -62,9 +62,9 @@ const { width, height } = Dimensions.get("window");
                     </Left>
                 </Header>
                      <LinearGradient 
-                        colors={[ '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
+                        colors={['#480048','#C04848']} 
                         style={styles.LinearGradient}
-                        start={{ x: 1, y: 1 }}
+                        start={{ x: 0, y: 1 }}
                         end={{ x: 1, y: 0 }}> 
                         <View>
                         
