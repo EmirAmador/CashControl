@@ -19,7 +19,7 @@ import agregarIngreso from './src/screens/agregarIngreso';
 import  registro  from "./src/screens/registroUsuario";
 import { theme } from "./src/components/theme";
 import PersistLogin from "./src/utils/persistLogin";
-
+import login from './src/screens/login';
 //import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
@@ -48,7 +48,7 @@ export default function App() {
         <NavigationContainer>
         <Stack.Navigator >
           {user ? (
-            <Stack.Screen name="mainScreen" component={mainScreen} initialParams={{user:user}}/>
+            <Stack.Screen name="login" component={login} initialParams={{user:user}}/>
 
           ):(
             <>
@@ -61,6 +61,7 @@ export default function App() {
           <Stack.Screen name="balance" component={balance} />
           <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
           <Stack.Screen name="registro" component={registro}  />
+          <Stack.Screen name="login" component={login}  />
           </>
           )}
        
