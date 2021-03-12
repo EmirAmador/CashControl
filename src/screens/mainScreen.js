@@ -1,9 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Button} from "native-base";
+import {Container,View,Header,Button, Right} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer} from '@react-navigation/native';
+import { TouchableOpacity } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -16,8 +17,11 @@ const mainScreen = ({ navigation }) => {
                      style={styles.LinearGradient}
                      start={{ x: 0, y: 1 }}
                      end={{ x: 1, y: 0 }}> 
-                    <View >
-                    
+                    <View  >
+                      <TouchableOpacity style={styles.logout} onPress={() => navigation.navigate("login")}>
+                        <MaterialIcons name="logout" size={30} color="black" />
+                      </TouchableOpacity>
+
                         <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
@@ -55,7 +59,14 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#3CCCD6',
       },
-
+      logout:{
+        width:50,
+        marginTop:30,
+        alignContent:"flex-end",
+        alignItems:"flex-end",
+        marginRight:20,
+        alignSelf:"flex-end"
+      },
     botonIngresos:{
       width:190,
       height:60,
@@ -107,7 +118,7 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:140,
+  marginTop:20,
   color:"#FFFFFF",
   fontSize:40,
   fontWeight:"bold",

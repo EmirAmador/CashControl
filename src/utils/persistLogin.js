@@ -13,6 +13,7 @@ const PersistLogin = () => {
         .doc(user.uid)
         .get()
         .then((document) => {
+          console.log("usuario existe");
           return document.data();
         })
         .catch((error) => {

@@ -19,8 +19,7 @@ import agregarIngreso from './src/screens/agregarIngreso';
 import  registro  from "./src/screens/registroUsuario";
 import { theme } from "./src/components/theme";
 import PersistLogin from "./src/utils/persistLogin";
-import { Footer } from 'native-base';
-
+import login from './src/screens/login';
 //import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
@@ -46,24 +45,23 @@ export default function App() {
         <CategoriaContextProvider>
         <IngresosContextProvider> 
         <NavigationContainer>
-        <Stack.Navigator >
-          {user ? (
-            <Stack.Screen name="mainScreen" component={mainScreen} initialParams={{user:user}}
-            options={{headerShown:false}}/>
-          ):(
-            <>
-            <Stack.Screen  name="registro" component={registro} initialParams={{userCreated:false}}
-            options={{headerShown:false}}/>
+        <Stack.Navigator initialRouteName="login" headerMode="none" >
+            <Stack.Screen name="mainScreen" component={mainScreen} initialParams={{user:user}}/>
 
-          
-          </>
-          )}
-          <Stack.Screen name="agregarGastos" component={AgregarGastos} />
-          <Stack.Screen name="listadoIngresos" component={listadoIngresos} options={{headerTitle:'Ingresos'}} />
-          <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
+       
+            <Stack.Screen  name="login" component={login} initialParams={{userCreated:false}}
+            options={{headerShown:false}}/>
+            
+            <Stack.Screen name="agregarGastos" component={AgregarGastos} />
+          <Stack.Screen name="listadoIngresos" component={listadoIngresos} headerMode="none"/>
+          <Stack.Screen name="pantallaGastos" component={pantallaGastos} headerMode="none" />
           <Stack.Screen name="balance" component={balance} />
           <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+          <Stack.Screen name="registro" component={registro}  />
+
           
+        
+       
         </Stack.Navigator>
       </NavigationContainer>  
       </IngresosContextProvider> 

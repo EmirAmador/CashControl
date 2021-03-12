@@ -1,12 +1,22 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fab,Left,Body} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fab,Left,Body,List} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
-import { List } from "../components/List";
+import { ContextoGastos } from "../Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
 
 const listadoGastos = ({ navigation }) => { 
+    const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
+           gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);
+    var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+    
+    
+    var suma = 0;
+    montos ? montos.forEach(function(monto){
+        suma += monto;
+    }):null; 
+   console.log(suma);
 
        return (
             <Container style={styles.fondo}>
@@ -16,23 +26,191 @@ const listadoGastos = ({ navigation }) => {
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
                    <View>
-                        <Header style={styles.header}>
-
-                        </Header>
-                    
+                        
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
                        
                        <Card style={styles.lista}>
                            <ScrollView>
                               <List>
-                                   
-                              </List>
-     
-                            </ScrollView>
-                            <View>
+                              {gastosAlimentacion != "" ?
+                                    <ListItem itemDivider style={styles.item}  >
+                                        <Text style={styles.textItem}>Alimentacion</Text>
+                                    </ListItem>
+                                    :null
+                                  }
+                                    
+                                {gastosAlimentacion
+                         
+                                    ? 
+                                    
+                                    gastosAlimentacion.map((alimento) => (
+                                        <ListItem key={alimento.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: alimento.id });
+                                        }}>
+                                            <Left><Text>{alimento.descripcion}</Text></Left> 
+                                            <Body><Text> {alimento.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+ 
+                                        </ListItem>
+                                    ))
+                                    : null}
+
+                                  {gastosVivienda != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Vivienda</Text>
+                                    </ListItem>
+                                  :null}  
+                                 
+                                 {gastosVivienda
+                         
+                                    ? gastosVivienda.map((vivienda) => (
+                                        <ListItem key={vivienda.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: vivienda.id });
+                                        }}>
+                                            <Left><Text>{vivienda.descripcion}</Text></Left> 
+                                            <Body><Text> {vivienda.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null}
+
+                                {gastosTrasporte != "" ? 
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Trasporte</Text>
+                                    </ListItem>
+                                    :null}
+
+                                 {gastosTrasporte
+                         
+                                    ? gastosTrasporte.map((transporte) => (
+                                        <ListItem key={transporte.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: transporte.id });
+                                        }}>
+                                            <Left><Text>{transporte.descripcion}</Text></Left> 
+                                            <Body><Text> {transporte.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null} 
+                                {gastosSalud != "" ?
+                                     <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Salud</Text>
+                                    </ListItem>
+                                :null}
+                               
+                                 {gastosSalud
+                         
+                                    ? gastosSalud.map((salud) => (
+                                        <ListItem key={salud.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: salud.id });
+                                        }}>
+                                            <Left><Text>{salud.descripcion}</Text></Left> 
+                                            <Body><Text> {salud.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null}  
+
+                                 {gastosEntretenimiento != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Entretenimiento</Text>
+                                    </ListItem>
+                                 :null}
+                                 
+                                 {gastosEntretenimiento
+                         
+                                    ? gastosEntretenimiento.map((entretenimiento) => (
+                                        <ListItem key={entretenimiento.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: entretenimiento.id });
+                                        }}>
+                                            <Left><Text>{entretenimiento.descripcion}</Text></Left> 
+                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null}    
+
+                                {gastosVestuario != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Vestuario</Text>
+                                    </ListItem>
+                                :null}
                                 
-                            </View>
+                                 {gastosVestuario
+                         
+                                    ? gastosVestuario.map((vestuario) => (
+                                        <ListItem key={vestuario.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: vestuario.id });
+                                        }}>
+                                            <Left><Text>{vestuario.descripcion}</Text></Left> 
+                                            <Body><Text> {vestuario.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null}     
+
+                                    {gastosEducacion != "" ?
+                                         <ListItem itemDivider style={styles.item}>
+                                            <Text style={styles.textItem}>Educacion</Text>
+                                        </ListItem>
+                                    :null}
+                                 
+                                 {gastosEducacion
+                         
+                                    ? gastosEducacion.map((educacion) => (
+                                        <ListItem key={educacion.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: educacion.id });
+                                        }}>
+                                            <Left><Text>{educacion.descripcion}</Text></Left> 
+                                            <Body><Text> {educacion.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+                                        </ListItem>
+                                    ))
+                                    : null}         
+
+                                {gastosOtros != "" ?
+                                <ListItem itemDivider style={styles.item}>
+                                    <Text style={styles.textItem}>Otros</Text>
+                                </ListItem>
+                                :null}
+                                
+                                 {gastosOtros
+                         
+                                    ? gastosOtros.map((otros) => (
+                                        <ListItem key={otros.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: otros.id });
+                                        }}>
+                                            <Left><Text>{otros.descripcion}</Text></Left> 
+                                            <Body><Text> {otros.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
+
+                                        </ListItem>
+                                    ))
+                                    : null}
+                              </List>
+                                 </ScrollView>
+                           
                         </Card>
                         <Fab
                             active={true}
@@ -71,7 +249,7 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 0,
+        marginTop: 60,
         color: '#236266',
     },
 

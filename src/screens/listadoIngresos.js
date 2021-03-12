@@ -3,10 +3,17 @@ import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,List,ListIt
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
+import { ContextoIngresos } from "../Context/ingresoContext";
 const { width, height } = Dimensions.get("window");
 
 const listadoIngresos = ({ navigation }) => { 
-
+    const {ingresos} = useContext(ContextoIngresos);
+    var montos = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+    
+    var suma = 0;
+    montos ? montos.forEach(function(monto){
+        suma += monto;
+    }):null; 
        return (
             <Container style={styles.fondo}>
                 <LinearGradient 
@@ -16,20 +23,29 @@ const listadoIngresos = ({ navigation }) => {
                     end={{ x: 1, y: 0 }}> 
                    <View>
                         
-                    
+                        
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
                        
                        <Card style={styles.lista}>
                            <ScrollView>
                               <List>
-                                   
+                              {ingresos ? 
+                                    ingresos.map((ingreso) => (
+                                        <ListItem key={ingreso.id.toString()} 
+                                         onPress={() => {      
+                                            navigation.navigate("modificarIngreso", { id: ingreso.id });
+                                        }}>
+                                            <Left><Text>{ingreso.descripcion}</Text></Left>
+                                            <Body><Text>L. {ingreso.monto} </Text></Body> 
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right>   
+                                        </ListItem>
+                                    ))
+                                    : null}
                               </List>
      
                             </ScrollView>
-                            <View>
-                                
-                            </View>
+                            
                         </Card>
                         <Fab
                             active={true}
@@ -52,7 +68,7 @@ const styles = StyleSheet.create({
    
     fondo: {
       width: width,
-      height: height,
+      height: height ,
     },
   
     linearGradient: {
@@ -68,7 +84,7 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 0,
+        marginTop: 60,
         color: '#ffffff',
     },
 
