@@ -20,7 +20,7 @@ import  registro  from "./src/screens/registroUsuario";
 import { theme } from "./src/components/theme";
 import PersistLogin from "./src/utils/persistLogin";
 import login from './src/screens/login';
-import ahorros from './src/screens/ahorros'
+//import ahorros from './src/screens/ahorros'
 //import modificarIngreso from './src/screens/modificarIngreso';
 
 const Stack = createStackNavigator();
@@ -53,11 +53,9 @@ export default function App() {
             <Stack.Screen  name="login" component={login} initialParams={{userCreated:false}}
             options={{headerShown:false}}/>
             
-            <Stack.Screen name="agregarGastos" component={AgregarGastos} />
             <Stack.Screen name="listadoIngresos" component={listadoIngresos} headerMode="none"/>
             <Stack.Screen name="listadoGastos" component={listadoGastos} headerMode="none"/>
             <Stack.Screen name="balance" component={balance} />
-            <Stack.Screen name="ahorros" component={ahorros} />
             <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
             <Stack.Screen name="agregarGasto" component={agregarGasto} />
             <Stack.Screen name="registro" component={registro}  />
