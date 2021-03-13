@@ -20,6 +20,7 @@ import  registro  from "./src/screens/registroUsuario";
 import { theme } from "./src/components/theme";
 import PersistLogin from "./src/utils/persistLogin";
 import login from './src/screens/login';
+import forgotPassword from './src/screens/forgotPassword';
 //import ahorros from './src/screens/ahorros'
 //import modificarIngreso from './src/screens/modificarIngreso';
 
@@ -59,9 +60,7 @@ export default function App() {
             <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
             <Stack.Screen name="agregarGasto" component={agregarGasto} />
             <Stack.Screen name="registro" component={registro}  />
-
-          
-        
+            <Stack.Screen name="forgotPassword" component={forgotPassword}  />
        
         </Stack.Navigator>
       </NavigationContainer>  
