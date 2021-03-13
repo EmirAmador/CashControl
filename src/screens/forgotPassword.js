@@ -32,9 +32,7 @@ const forgotPassword = ({ navigation, route }) => {
             <View style={styles.centro}>
               <PasswordForm navigation={navigation}/> 
               
-              <TouchableOpacity onPress={() => navigation.navigate("login")}>
-                <Text style={styles.pass}>Guardar Contraseña</Text>
-              </TouchableOpacity>
+             
             </View>
              
             <View  style={styles.viewFoother}>

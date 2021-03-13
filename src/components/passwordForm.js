@@ -101,7 +101,7 @@ const PasswordForm = ({ navigation }) => {
             : ""
         }
       />
-      <Button style={styles.boton} title="Log in" onPress={handleSignin} />
+      <Button style={styles.boton} title="Guardar Contraseña" onPress={() => navigation.navigate("login")} />
     </View>
   );
 };
