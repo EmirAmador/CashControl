@@ -28,7 +28,7 @@ const login = ({ navigation, route }) => {
                 }}
               >
               </TouchableOpacity>
-              <Image source={require("../../assets/user.png")} style={styles.user} />
+              <Image source={require("../../assets/logo.png")} style={styles.user} />
 
             </View>
             <View style={styles.centro}>
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
         marginRight:30,
       },
       user:{
-        width: 140,
-        height: 140,
+        width: 150,
+        height: 150,
         alignSelf: "center",
         
       }
