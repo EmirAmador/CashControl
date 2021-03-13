@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
 import { ContextoIngresos } from "../Context/ingresoContext";
 const { width, height } = Dimensions.get("window");
+import { MaterialIcons } from '@expo/vector-icons';
 
 const listadoIngresos = ({ navigation }) => { 
     const {ingresos} = useContext(ContextoIngresos);

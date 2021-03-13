@@ -76,7 +76,6 @@ import * as Font from "expo-font";
                          end={{ x: 1, y: 0 }}> 
                         <View >
                             
-                            <Image source={require("../../assets/logoSimbolo.png")} style={styles.logoImage} />
                     
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>

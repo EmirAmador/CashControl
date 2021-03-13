@@ -21,13 +21,7 @@ const registro = ({ navigation }) => {
             </View>
             <View style={styles.vistaFlotante} >
              <FormRegistro navigation={navigation}/>   
-             <TouchableOpacity
-                onPress={() => {
-                  navigation.goBack();
-                }}
-              >
-                <Text>Already got an account? Sign in</Text>
-            </TouchableOpacity>
+            
             </View>
            
 

@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
 import { ContextoGastos } from "../Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
+import { MaterialIcons } from '@expo/vector-icons';
 
 const listadoGastos = ({ navigation }) => { 
     const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
@@ -218,7 +219,7 @@ const listadoGastos = ({ navigation }) => {
                             style={{ backgroundColor: "#ff0023" }}
                             direction="up"
                             onPress={() => {
-                                navigation.navigate("agregarGastos")
+                                navigation.navigate("agregarGasto")
                             }}
                             >
                             <Icon name="plus" type="FontAwesome" />

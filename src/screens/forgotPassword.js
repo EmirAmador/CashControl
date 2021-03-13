@@ -26,7 +26,7 @@ const forgotPassword = ({ navigation, route }) => {
                 }}
               >
               </TouchableOpacity>
-              <Image source={require("../../assets/user.png")} style={styles.user} />
+              <Image source={require("../../assets/logo.png")} style={styles.user} />
 
             </View>
             <View style={styles.centro}>

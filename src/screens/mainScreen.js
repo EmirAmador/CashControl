@@ -27,7 +27,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 
-                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate("pantallaGastos")}>
+                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate("listadoGastos")}>
                           <MaterialIcons name="money-off" size={24} color="black" />
                             <Text style={styles.textoBotones}>Gastos</Text>
                         </Button> 
