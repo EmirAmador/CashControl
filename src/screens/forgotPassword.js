@@ -3,17 +3,15 @@ import React, { Component, useEffect, useState } from "react";
 import { StyleSheet,Dimensions, Image,TouchableOpacity} from "react-native";
 import {Container,View,Header} from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
-import SigninForm  from "../components/signInForm";
+import PasswordForm from "../components/passwordForm";
 const { width, height } = Dimensions.get("window");
 
-const login = ({ navigation, route }) => {
-    const { userCreated } = route.params;
+const forgotPassword = ({ navigation, route }) => {
+    
     return(
         <Container style={styles.Fondo}  >
             <View  style={styles.viewHeather}>
-            {userCreated ? (
-              <Alert type="success" title="User created! You can now sign in!" />
-            ) : null}
+            
               <LinearGradient 
                     colors={['#480048','#C04848']} 
                     style={styles.LinearGradient}
@@ -32,13 +30,10 @@ const login = ({ navigation, route }) => {
 
             </View>
             <View style={styles.centro}>
-              <SigninForm navigation={navigation}/> 
+              <PasswordForm navigation={navigation}/> 
               
-              <TouchableOpacity onPress={() => navigation.navigate("forgotPassword")}>
-                <Text style={styles.pass}>Olvide Contraseña</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate("registro")}>
-                <Text style={styles.pass}>Registrarse</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("login")}>
+                <Text style={styles.pass}>Guardar Contraseña</Text>
               </TouchableOpacity>
             </View>
              
@@ -109,4 +104,4 @@ const styles = StyleSheet.create({
       }
   });
   
-  export default login;
+  export default forgotPassword;
