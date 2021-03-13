@@ -47,20 +47,17 @@ const { width, height } = Dimensions.get("window");
               setErrorDescripcion(true);
             }         
           };
-
+/*
           if (!fontsLoaded)
           return (
             <Content contentContainerStyle={styles.content}>
               <Spinner color="blue" />
             </Content>
-          );
+          );*/
 
             return (
                 <Container style={styles.Fondo}  >
-                  <Header style={styles.header}>
-                    <Left><Image source={require("../../assets/logoSimbolo.png")} style={styles.logoImage} />
-                    </Left>
-                </Header>
+                  
                      <LinearGradient 
                         colors={['#480048','#C04848']} 
                         style={styles.LinearGradient}
@@ -79,7 +76,7 @@ const { width, height } = Dimensions.get("window");
                             </Item>
                             
                             <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
-                                <FontAwesome5 name="money-bill-alt" size={24} color="black" />
+                                <FontAwesome5 name="money-bill-alt" size={24} color="white" />
                                 <Input  placeholder='Monto'
                                  value={monto}
                                  onChangeText={setMonto}/>
@@ -106,7 +103,8 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     },
-  
+    textoInput:{
+    },
     LinearGradient: {
       height: height,
       width: width
@@ -137,7 +135,7 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:40,
+  marginTop:100,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
@@ -145,6 +143,7 @@ textoTitulo:{
 },
 itemStyle:{
     marginTop:20,
+    
 },
 viewStyle:{
     width:350,

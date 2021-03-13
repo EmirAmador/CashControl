@@ -57,7 +57,7 @@ import * as Font from "expo-font";
             }         
           };
 
-          
+          /*
           if (!fontsLoaded)
           return (
             <Content contentContainerStyle={styles.content}>
@@ -65,7 +65,7 @@ import * as Font from "expo-font";
             </Content>
           );
           console.log(categorias);
-
+*/
             return (
                 <Container style={styles.Fondo}  >
                     
@@ -90,14 +90,14 @@ import * as Font from "expo-font";
                             </Item>
                             
                             <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
-                                <FontAwesome5 name="money-bill-alt" size={24} color="black" />
+                                <FontAwesome5 name="money-bill-alt" size={24} color="white" />
                                 <Input  placeholder='Monto'
                                  value={monto}
                                  onChangeText={setMonto}/>
                             </Item>
                             
                             <Item>
-                              <AntDesign name="select1" size={24} color="black" />            
+                              <AntDesign name="select1" size={24} color="white" />            
                                 <Picker
                                     mode="dropdown"
                                     placeHolderText="Fecha"

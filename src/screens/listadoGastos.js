@@ -249,12 +249,12 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 60,
-        color: '#236266',
+        marginTop: 80,
+        color: '#FFFFFF',
     },
 
     divisor:{
-        borderBottomColor: '#236266',
+        borderBottomColor: '#FFFFFF',
         borderBottomWidth: 2,
         width: width * 0.9,
         alignSelf: "center"

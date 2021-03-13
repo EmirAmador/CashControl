@@ -53,7 +53,7 @@ const listadoIngresos = ({ navigation }) => {
                             style={{ backgroundColor: "#C70039" }}
                             direction="up"
                             onPress={() => {
-                                navigation.navigate("agregarGastos")
+                                navigation.navigate("agregarIngreso")
                             }}
                             >
                             <Icon name="plus" type="FontAwesome" />
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 60,
+        marginTop: 100,
         color: '#ffffff',
     },
 
