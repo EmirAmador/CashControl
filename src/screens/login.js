@@ -6,14 +6,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import SigninForm  from "../components/signInForm";
 const { width, height } = Dimensions.get("window");
 
-const login = ({ navigation, route }) => {
-    const { userCreated } = route.params;
+const login = ({ navigation }) => {
+    //const { userCreated } = route.params;
     return(
         <Container style={styles.Fondo}  >
             <View  style={styles.viewHeather}>
-            {userCreated ? (
-              <Alert type="success" title="User created! You can now sign in!" />
-            ) : null}
+           
               <LinearGradient 
                     colors={['#480048','#C04848']} 
                     style={styles.LinearGradient}
@@ -32,7 +30,7 @@ const login = ({ navigation, route }) => {
 
             </View>
             <View style={styles.centro}>
-              <SigninForm navigation={navigation}/> 
+              <SigninForm/> 
               
               <TouchableOpacity onPress={() => navigation.navigate("forgotPassword")}>
                 <Text style={styles.pass}>Olvide Contraseña</Text>

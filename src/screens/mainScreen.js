@@ -1,15 +1,16 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import {Container,View,Header,Button, Right} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer} from '@react-navigation/native';
 import { TouchableOpacity } from "react-native";
-
+import {Context as AuthContext} from "../providers/AuthContext";
 const { width, height } = Dimensions.get("window");
 
 const mainScreen = ({ navigation }) => { 
-  
+
+  const { signout } = useContext(AuthContext);
        return (
             <Container style={styles.Fondo}  >
                  <LinearGradient 
@@ -36,7 +37,12 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>
                         </Button> 
-
+                        <Button
+                         title="Signout"
+                          onPress={() => {
+                            signout();
+                          }}
+                        />
                 </View>
 
             </LinearGradient>
