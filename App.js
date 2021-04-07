@@ -7,6 +7,7 @@ import {CategoriaContextProvider} from "./src/Context/categoriasContext"
 import { IngresosContextProvider } from "./src/Context/ingresoContext";
 import { theme } from "./src/components/theme";
 import {Provider as AuthProvider, Context as AuthContext} from "./src/providers/AuthContext"
+import { Provider as GastoProvider } from "./src/providers/GastoContext";
 import Navigation from "./src/components/navigation";
 import LongTimers from "./src/utils/LongTimers";
 
@@ -16,17 +17,19 @@ export default function App() {
 
  return (
    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <SafeAreaProvider>
-          <GastosContextProvider>
-            <CategoriaContextProvider>
-              <IngresosContextProvider> 
-                <Navigation />
-              </IngresosContextProvider> 
-            </CategoriaContextProvider>
-         </GastosContextProvider> 
-        </SafeAreaProvider>
-      </ThemeProvider>
+     <GastoProvider>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+            <GastosContextProvider>
+              <CategoriaContextProvider>
+                <IngresosContextProvider> 
+                  <Navigation />
+                </IngresosContextProvider> 
+              </CategoriaContextProvider>
+            </GastosContextProvider> 
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </GastoProvider>
     </AuthProvider>
 
   );
