@@ -3,20 +3,20 @@ import {Container,View,Header,Item,Input,Icon,Button,Content,Spinner, Left} from
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import {ContextoIngresos} from "../../src/Context/ingresoContext";
-import * as Font from "expo-font";
+import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as IngresoContext } from "../providers/IngresoContext";
+
 
 const { width, height } = Dimensions.get("window");
 
  const agregarIngreso = ({ navigation }) =>{ 
 
-          const [descripcion, setDescripcion] = useState("");
-          const [monto, setMonto] = useState("");
-          const contextoIngresos = useContext(ContextoIngresos);
-          const { agregarIngreso, refreshIngresos } = contextoIngresos;
-          const [fontsLoaded, setFontsLoaded] = useState(false);
-          const [enableSave, setEnableSave] = useState(true);
-          const [errorDescripcion, setErrorDescripcion] = useState(false);
+    const [fontsLoaded, setFontsLoaded] = useState(false);         
+    const { createIngreso } = useContext(IngresoContext);
+    const { state } = useContext(AuthContext);
+    const [title, setTitle] = useState("");
+    const [timestamp, setTimestamp] = useState(Date.now());
+    const [content, setContent] = useState("");
           
           /*useEffect(() => {
             const loadFontsAsync = async () => {
@@ -36,7 +36,7 @@ const { width, height } = Dimensions.get("window");
               else setEnableSave(true);
             }, [descripcion]);
 
-          const handlerNewIngreso = async () => {
+          /*const handlerNewIngreso = async () => {
 
             if (descripcion , monto) {
               await agregarIngreso(descripcion,monto,refreshIngresos);
@@ -46,7 +46,7 @@ const { width, height } = Dimensions.get("window");
             else {
               setErrorDescripcion(true);
             }         
-          };
+          };*/
 /*
           if (!fontsLoaded)
           return (
