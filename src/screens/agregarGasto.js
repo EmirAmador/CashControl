@@ -3,29 +3,30 @@ import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left} fr
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import {ContextoGastos} from "../../src/Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
-import {ContextoCategorias} from "../Context/categoriasContext"
-import * as Font from "expo-font";
+import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as GastoContext } from "../providers/GastoContext";
 
  const agregarGasto  = ({ navigation }) =>{ 
 
-          const {categorias} = useContext(ContextoCategorias);
-          const [descripcion, setDescripcion] = useState("");
-          const [monto, setMonto] = useState("");
-          const [categoria,setCategoria] = useState("");
-          const [fecha, setFecha] = useState(new Date());
-          const contextoGastos = useContext(ContextoGastos);
-          const { agregarGasto, refreshGastos } = contextoGastos;
-          const [fontsLoaded, setFontsLoaded] = useState(false);
-          const [enableSave, setEnableSave] = useState(true);
-          const [errorDescripcion, setErrorDescripcion] = useState(false);
 
+        
+    const [fontsLoaded, setFontsLoaded] = useState(false);         
+    const { createGasto } = useContext(GastoContext);
+    const { state } = useContext(AuthContext);
+    const [title, setTitle] = useState("");
+    const [timestamp, setTimestamp] = useState(Date.now());
+    const [content, setContent] = useState("");
 
+    const handleSaveNote = () => {
+      if (!title) {
+        setTitle("Nuevo Gasto");
+        createGasto("Nuevo Gasto", content, timestamp, state.user.id);
+      } else createGasto(title, content, timestamp, state.user.id);
+    };
 
-          
-          /*useEffect(() => {
+          useEffect(() => {
             const loadFontsAsync = async () => {
               await Font.loadAsync({
                 Roboto_medium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
@@ -35,27 +36,13 @@ import * as Font from "expo-font";
             };
         
             loadFontsAsync();
-          }, []);*/
+          }, []);
          
           // Ejecutar el efecto cuando el valor de la nota cambie
             useEffect(() => {
               if (descripcion) setEnableSave(false);
               else setEnableSave(true);
             }, [descripcion]);
-
-
-          const handlerNewGasto = async () => {
-
-            if (descripcion , monto) {
-             await agregarGasto(descripcion,monto,categoria,refreshGastos);
-              navigation.goBack();
-              
-            }
-           
-            else {
-              setErrorDescripcion(true);
-            }         
-          };
 
           /*
           if (!fontsLoaded)
@@ -75,8 +62,6 @@ import * as Font from "expo-font";
                          start={{ x: 0, y: 1 }}
                          end={{ x: 1, y: 0 }}> 
                         <View >
-                            
-                    
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
@@ -123,7 +108,7 @@ import * as Font from "expo-font";
                                   </Picker>
                             </Item>
 
-                            <Button style={styles.botonCrear} rounded onPress={handlerNewGasto}>
+                            <Button style={styles.botonCrear} rounded onPress={handleSaveNote}>
                               <Text style={styles.textoBotones}>
                                 Crear
                               </Text>    
