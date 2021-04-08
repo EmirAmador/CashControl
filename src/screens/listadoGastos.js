@@ -3,13 +3,12 @@ import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fa
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
-import { ContextoGastos } from "../Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
 import { MaterialIcons } from '@expo/vector-icons';
 
 const listadoGastos = ({ navigation }) => { 
-    const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
-           gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);
+    /*const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
+           gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);*
     var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
     
     
@@ -17,7 +16,7 @@ const listadoGastos = ({ navigation }) => {
     montos ? montos.forEach(function(monto){
         suma += monto;
     }):null; 
-   console.log(suma);
+   console.log(suma);*/
 
        return (
             <Container style={styles.fondo}>
@@ -34,7 +33,7 @@ const listadoGastos = ({ navigation }) => {
                        <Card style={styles.lista}>
                            <ScrollView>
                               <List>
-                              {gastosAlimentacion != "" ?
+                                  {/* {gastosAlimentacion != "" ?
                                     <ListItem itemDivider style={styles.item}  >
                                         <Text style={styles.textItem}>Alimentacion</Text>
                                     </ListItem>
@@ -208,7 +207,8 @@ const listadoGastos = ({ navigation }) => {
 
                                         </ListItem>
                                     ))
-                                    : null}
+                                    : null}*/}
+                              
                               </List>
                                  </ScrollView>
                            

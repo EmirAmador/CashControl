@@ -35,21 +35,20 @@ const Navigation = () => {
         {!state.loading && (
         <>
           {state.loggedIn ? (
-            <Stack.Navigator initialRouteName="login" headerMode="none" >
-                
+            
+            <Stack.Navigator  >
+               <Stack.Screen name="mainScreen" component={mainScreen} options={{headerShown:false}} />
+               <Stack.Screen name="listadoGastos" component={listadoGastos} options={{headerShown:false}}/>
+                <Stack.Screen name="agregarGasto" component={agregarGasto} options={{headerShown:false}} />
+                <Stack.Screen name="listadoIngresos" component={listadoIngresos} options={{headerShown:false}}/>
+                <Stack.Screen name="balance" component={balance} />
+                <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+                <Stack.Screen name="forgotPassword" component={forgotPassword}  />
             </Stack.Navigator>
             ) : (
                 <Stack.Navigator>
                     <Stack.Screen  name="login" component={login} options={{headerShown:false}}/>
-           
-                    <Stack.Screen name="mainScreen" component={mainScreen} />
-                    <Stack.Screen name="listadoIngresos" component={listadoIngresos} headerMode="none"/>
-                    <Stack.Screen name="listadoGastos" component={listadoGastos} headerMode="none"/>
-                    <Stack.Screen name="balance" component={balance} />
-                    <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
-                    <Stack.Screen name="agregarGasto" component={agregarGasto} />
                     <Stack.Screen name="registro" component={registro}  />
-                    <Stack.Screen name="forgotPassword" component={forgotPassword}  />
                 </Stack.Navigator>
             )}
         </>

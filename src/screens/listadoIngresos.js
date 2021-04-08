@@ -3,18 +3,17 @@ import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,List,ListIt
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
-import { ContextoIngresos } from "../Context/ingresoContext";
 const { width, height } = Dimensions.get("window");
 import { MaterialIcons } from '@expo/vector-icons';
 
 const listadoIngresos = ({ navigation }) => { 
-    const {ingresos} = useContext(ContextoIngresos);
+    /*const {ingresos} = useContext(ContextoIngresos);
     var montos = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
     
     var suma = 0;
     montos ? montos.forEach(function(monto){
         suma += monto;
-    }):null; 
+    }):null; */
        return (
             <Container style={styles.fondo}>
                 <LinearGradient 
@@ -31,7 +30,7 @@ const listadoIngresos = ({ navigation }) => {
                        <Card style={styles.lista}>
                            <ScrollView>
                               <List>
-                              {ingresos ? 
+                            {/* {ingresos ? 
                                     ingresos.map((ingreso) => (
                                         <ListItem key={ingreso.id.toString()} 
                                          onPress={() => {      
@@ -42,7 +41,8 @@ const listadoIngresos = ({ navigation }) => {
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right>   
                                         </ListItem>
                                     ))
-                                    : null}
+                                    : null}*/}
+                              
                               </List>
      
                             </ScrollView>

@@ -3,7 +3,6 @@ import {Container,View,Header,Button, Right} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { NavigationContainer} from '@react-navigation/native';
 import { TouchableOpacity } from "react-native";
 import {Context as AuthContext} from "../providers/AuthContext";
 const { width, height } = Dimensions.get("window");
@@ -28,7 +27,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 
-                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate("listadoGastos")}>
+                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate('listadoGastos')}>
                           <MaterialIcons name="money-off" size={24} color="black" />
                             <Text style={styles.textoBotones}>Gastos</Text>
                         </Button> 
