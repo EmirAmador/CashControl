@@ -15,17 +15,19 @@ import {Context as GastoContext } from "../providers/GastoContext";
     const [fontsLoaded, setFontsLoaded] = useState(false);         
     const { createGasto } = useContext(GastoContext);
     const { state } = useContext(AuthContext);
-    const [title, setTitle] = useState("");
-    const [timestamp, setTimestamp] = useState(Date.now());
-    const [content, setContent] = useState("");
+    //const [cat, ] = useState("");
+    const [monto, setMonto] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [errorDescripcion, setErrorDescripcion] = useState(false);
+    const [enableSave, setEnableSave] = useState(true);
+
+
 
     const handleSaveNote = () => {
-      if (!title) {
-        setTitle("Nuevo Gasto");
-        createGasto("Nuevo Gasto", content, timestamp, state.user.id);
-      } else createGasto(title, content, timestamp, state.user.id);
+        createGasto( descripcion, monto, state.user.id);
+        navigation.goBack();
     };
-
+/*
           useEffect(() => {
             const loadFontsAsync = async () => {
               await Font.loadAsync({
@@ -36,13 +38,13 @@ import {Context as GastoContext } from "../providers/GastoContext";
             };
         
             loadFontsAsync();
-          }, []);
+          }, []);*/
          
           // Ejecutar el efecto cuando el valor de la nota cambie
-            useEffect(() => {
+           /* useEffect(() => {
               if (descripcion) setEnableSave(false);
               else setEnableSave(true);
-            }, [descripcion]);
+            }, [descripcion]);*/
 
           /*
           if (!fontsLoaded)
@@ -86,15 +88,15 @@ import {Context as GastoContext } from "../providers/GastoContext";
                                     mode="dropdown"
                                     placeHolderText="Fecha"
                                     label="Basic example"
-                                    selectedValue={categoria}
+                                    /*selectedValue={categoria}
                                     onValueChange={ (item) => {
                                       setCategoria(item)
-                                    }}
+                                    }}*/
                                     animateYearScrolling
                                     iosHeader="Categorias"
                                     
                                   >
-                                    {
+                                    {/*
                                       categorias ? categorias.map((categoria)=>{
                                         return(
                                           <Picker.Item key={categoria.id.toString()} label={categoria.categoria} value={categoria.id}/>
@@ -102,7 +104,7 @@ import {Context as GastoContext } from "../providers/GastoContext";
                                       }
 
                                       )
-                                    : null
+                                    : null*/
                                     }
                                    
                                   </Picker>

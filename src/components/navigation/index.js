@@ -11,7 +11,6 @@ import balance from '../../screens/balance'
 import agregarIngreso from '../../screens/agregarIngreso';
 import registro  from "../../screens/registroUsuario";
 import forgotPassword from '../../screens/forgotPassword';
-import PersistLogin from "../../firebase/persistLogin";
 import login from '../../screens/login';
 
 const Stack = createStackNavigator();
@@ -44,11 +43,15 @@ const Navigation = () => {
                 <Stack.Screen name="balance" component={balance} />
                 <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
                 <Stack.Screen name="forgotPassword" component={forgotPassword}  />
+                <Stack.Screen name="registro" component={registro}  />
+
+
+
             </Stack.Navigator>
             ) : (
                 <Stack.Navigator>
-                    <Stack.Screen  name="login" component={login} options={{headerShown:false}}/>
-                    <Stack.Screen name="registro" component={registro}  />
+                                   <Stack.Screen  name="login" component={login} options={{headerShown:false}}/>
+
                 </Stack.Navigator>
             )}
         </>

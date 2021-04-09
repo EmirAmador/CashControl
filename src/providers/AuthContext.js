@@ -70,7 +70,7 @@ const signout = (dispatch) => () => {
   firebase
     .auth()
     .signOut()
-    .then(() => {
+    .then(() => {retonar
       dispatch({ type: "signout", payload: {} });
     })
     .catch((error) => {
@@ -83,7 +83,7 @@ const persistLogin = (dispatch) => () => {
   const userRef = firebase.firestore().collection("users");
 
   // Si el usuario ya se ha autenticado previamente, retornar
-  // la información del usuario, caso contrario,retonar un objeto vacío.
+  // la información del usuario, caso contrario, un objeto vacío.
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       userRef

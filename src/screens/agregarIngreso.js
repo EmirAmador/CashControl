@@ -31,10 +31,10 @@ const { width, height } = Dimensions.get("window");
           }, []);*/
          
           // Ejecutar el efecto cuando el valor de la nota cambie
-            useEffect(() => {
+           /* useEffect(() => {
               if (descripcion) setEnableSave(false);
               else setEnableSave(true);
-            }, [descripcion]);
+            }, [descripcion]);*/
 
           /*const handlerNewIngreso = async () => {
 

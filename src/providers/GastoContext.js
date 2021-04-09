@@ -10,6 +10,8 @@ const gastoReducer = (state, action) => {
       return { ...state, gastos: [...gastos, action.payload] };
     case "getGastos":
       return { ...state, gastos: action.payload };
+      case "setCurrentNote":
+      return { ...state, currentNote: action.payload };
     default:
       return state;
   }
@@ -19,12 +21,11 @@ const gastoReducer = (state, action) => {
 const gastosRef = firebase.firestore().collection("gastos");
 
 // Almacena una nueva nota para el usuario actual
-const createGasto = (dispatch) => (descripcion, monto, author, timestamp) => {
+const createGasto = (dispatch) => (descripcion, monto,autor) => {
   const data = {
     descripcion,
     monto,
-    timestamp,
-    userId: author,
+    userId : autor,
   };
 
   gastosRef
@@ -37,22 +38,23 @@ const createGasto = (dispatch) => (descripcion, monto, author, timestamp) => {
     });
 };
 
-// Obtener las notas del usuario
+
 const getGastos = (dispatch) => (userId) => {
   gastosRef
     .where("userId", "==", userId)
-    .orderBy("timestamp", "desc")
+    .orderBy("descripcion", "desc")
     .onSnapshot(
       (querySnapshot) => {
-        const gastos = [];
-
+        const  gastos= [];
         querySnapshot.forEach((doc) => {
           const gasto = doc.data();
           gasto.id = doc.id;
           gastos.push(gasto);
+
         });
 
         dispatch({ type: "getGastos", payload: gastos });
+
       },
       (error) => {
         dispatch({ type: "errorMessage", payload: error.message });
@@ -60,15 +62,47 @@ const getGastos = (dispatch) => (userId) => {
     );
 };
 
+// Limpiar el mensaje del contexto
+const clearMessage = (dispatch) => () => {
+  dispatch({ type: "errorMessage", payload: "" });
+};
+
+// Establece la nota actual seleccionada
+const setCurrentGasto = (dispatch) => (note) => {
+  dispatch({ type: "setCurrentNote", payload: note });
+};
+
+// Actualizar una nota existente
+const updateGasto = (dispatch) => (id, title, content, timestamp) => {
+  notesRef
+    .doc(id)
+    .update({ title, content, timestamp })
+    .then(() => {
+      dispatch({
+        type: "updateNote",
+        payload: { note: { id, title, content, timestamp } },
+      });
+      dispatch({ type: "errorMessage", payload: "Note updated!" });
+    })
+    .catch((error) => {
+      dispatch({ type: "errorMessage", payload: error.message });
+    });
+};
+
 // Exportar las funcionalidades requeridas al contexto
 export const { Provider, Context } = createDataContext(
   gastoReducer,
   {
+    clearMessage,
+    updateGasto,
+    setCurrentGasto,
     createGasto,
     getGastos,
   },
   {
     gastos: [],
     errorMessage: "",
+    currentNote: { id: "", descripcion: "", monto: "" },
+
   }
 );
