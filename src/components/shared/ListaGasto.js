@@ -13,11 +13,11 @@ const { width, height } = Dimensions.get("window");
 
 
 const ListaGasto = ({ navigation, gastos }) => {
-    const { state, setCurrentNote } = useContext(GastoContext);
+    const { state, setCurrentGasto } = useContext(GastoContext);
   
-    const handleSelectNote = (gasto) => {
-      setCurrentNote(gasto);
-      //navigation.navigate("ModifyNote");
+    const handleSelectGasto = (gasto) => {
+      setCurrentGasto(gasto);
+      navigation.navigate("modificarGasto");
     };
   
     const emptyFlatList = (
@@ -36,7 +36,7 @@ const ListaGasto = ({ navigation, gastos }) => {
             <>
               <TouchableOpacity
                 onPress={() => {
-                  handleSelectNote(item);
+                  handleSelectGasto(item);
                 }}
               >
                   

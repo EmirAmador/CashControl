@@ -10,6 +10,7 @@ const Gasto = ({ descripcion, monto }) => {
     <Card style={styles.container}>
       
         <Text>{descripcion}</Text>
+
         <Text>{monto}</Text>
       
       

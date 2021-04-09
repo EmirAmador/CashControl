@@ -10,23 +10,25 @@ const gastoReducer = (state, action) => {
       return { ...state, gastos: [...gastos, action.payload] };
     case "getGastos":
       return { ...state, gastos: action.payload };
-      case "setCurrentNote":
-      return { ...state, currentNote: action.payload };
-      case "updateNote":
+      case "setCurrentGasto":
+      return { ...state, currentGasto: action.payload };
+      case "updateGasto":
       return {
         ...state,
         gastos: state.gastos.map((gasto) => {
           if (gasto.id === action.payload.gasto.id) {
             return {
               ...gasto,
-              descripcion: action.payload.note.descripcion,
-              monto: action.payload.note.monto,
+              descripcion: action.payload.gasto.descripcion,
+              monto: action.payload.gasto.monto,
             };
           }
 
           return gasto;
         }),
       };
+      case "deleteGasto":
+      return { ...state, gastos: action.payload };
     default:
       return state;
   }
@@ -90,7 +92,7 @@ const setCurrentGasto = (dispatch) => (gasto) => {
 
 // Actualizar una nota existente
 const updateGasto = (dispatch) => (id, descripcion, monto) => {
-  notesRef
+  gastosRef
     .doc(id)
     .update({ descripcion, monto})
     .then(() => {
@@ -104,6 +106,21 @@ const updateGasto = (dispatch) => (id, descripcion, monto) => {
       dispatch({ type: "errorMessage", payload: error.message });
     });
 };
+const deleteGasto = (dispatch) => (id) => {
+  notesRef
+    .doc(id)
+    .delete()
+    .then(() => {
+      dispatch({
+        type: "deleteGasto",
+        payload: { gasto: { id } },
+      });
+      dispatch({ type: "errorMessage", payload: "Gasto Eliminado!" });
+    })
+    .catch((error) => {
+      dispatch({ type: "errorMessage", payload: error.message });
+    });
+};
 
 // Exportar las funcionalidades requeridas al contexto
 export const { Provider, Context } = createDataContext(
@@ -111,6 +128,7 @@ export const { Provider, Context } = createDataContext(
   {
     clearMessage,
     updateGasto,
+    deleteGasto,
     setCurrentGasto,
     createGasto,
     getGastos,
