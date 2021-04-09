@@ -6,14 +6,11 @@ const { width, height } = Dimensions.get("screen");
 
 const Gasto = ({ descripcion, monto }) => {
   return (
+    
     <Card style={styles.container}>
       
-      <CardItem >
         <Text>{descripcion}</Text>
-      </CardItem>
-      <CardItem >
         <Text>{monto}</Text>
-      </CardItem>
       
       
     </Card>

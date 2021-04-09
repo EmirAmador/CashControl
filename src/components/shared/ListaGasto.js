@@ -5,9 +5,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from "react-native";
 import { Context as GastoContext } from "../../providers/GastoContext";
 import Gasto from "./gasto";
+const { width, height } = Dimensions.get("window");
 
 
 const ListaGasto = ({ navigation, gastos }) => {
@@ -25,22 +27,21 @@ const ListaGasto = ({ navigation, gastos }) => {
     );
         console.log(gastos);
     return (
-      <View style={styles.container}>
+      <View style={styles.lista}>
           
         <FlatList
           data={gastos}
-          emptyFlatList={emptyFlatList}
           numColumns={2}
-          renderItem={({ item }) => (
+          renderItem={({item }) => (
             <>
               <TouchableOpacity
                 onPress={() => {
                   handleSelectNote(item);
                 }}
               >
+                  
                 <Gasto
-                    key={item.id}
-
+                  key={item.id}
                   descripcion={item.descripcion}
                   monto={item.monto}
                 />
@@ -55,6 +56,14 @@ const ListaGasto = ({ navigation, gastos }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+    },
+    lista:{
+        backgroundColor:"white",
+        height: height * 0.75,
+        width: width * 0.9,
+        alignSelf: "center",
+        borderRadius: 8,
+        marginTop: 8
     },
     emptyNotes: {
       flex: 1,

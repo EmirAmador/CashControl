@@ -15,7 +15,6 @@ import {Context as GastoContext } from "../providers/GastoContext";
     const [fontsLoaded, setFontsLoaded] = useState(false);         
     const { createGasto } = useContext(GastoContext);
     const { state } = useContext(AuthContext);
-    //const [cat, ] = useState("");
     const [monto, setMonto] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [errorDescripcion, setErrorDescripcion] = useState(false);

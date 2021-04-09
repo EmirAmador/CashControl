@@ -12,6 +12,21 @@ const gastoReducer = (state, action) => {
       return { ...state, gastos: action.payload };
       case "setCurrentNote":
       return { ...state, currentNote: action.payload };
+      case "updateNote":
+      return {
+        ...state,
+        gastos: state.gastos.map((gasto) => {
+          if (gasto.id === action.payload.gasto.id) {
+            return {
+              ...gasto,
+              descripcion: action.payload.note.descripcion,
+              monto: action.payload.note.monto,
+            };
+          }
+
+          return gasto;
+        }),
+      };
     default:
       return state;
   }
@@ -42,7 +57,6 @@ const createGasto = (dispatch) => (descripcion, monto,autor) => {
 const getGastos = (dispatch) => (userId) => {
   gastosRef
     .where("userId", "==", userId)
-    .orderBy("descripcion", "desc")
     .onSnapshot(
       (querySnapshot) => {
         const  gastos= [];
@@ -50,10 +64,12 @@ const getGastos = (dispatch) => (userId) => {
           const gasto = doc.data();
           gasto.id = doc.id;
           gastos.push(gasto);
-
+          console.log(userId);
         });
 
         dispatch({ type: "getGastos", payload: gastos });
+        dispatch({ type: "errorMessage", payload: "Tu gasto ha sido registrado!" });
+
 
       },
       (error) => {
@@ -68,21 +84,21 @@ const clearMessage = (dispatch) => () => {
 };
 
 // Establece la nota actual seleccionada
-const setCurrentGasto = (dispatch) => (note) => {
-  dispatch({ type: "setCurrentNote", payload: note });
+const setCurrentGasto = (dispatch) => (gasto) => {
+  dispatch({ type: "setCurrentGasto", payload: gasto });
 };
 
 // Actualizar una nota existente
-const updateGasto = (dispatch) => (id, title, content, timestamp) => {
+const updateGasto = (dispatch) => (id, descripcion, monto) => {
   notesRef
     .doc(id)
-    .update({ title, content, timestamp })
+    .update({ descripcion, monto})
     .then(() => {
       dispatch({
-        type: "updateNote",
-        payload: { note: { id, title, content, timestamp } },
+        type: "updateGasto",
+        payload: { gasto: { id, descripcion, monto } },
       });
-      dispatch({ type: "errorMessage", payload: "Note updated!" });
+      dispatch({ type: "errorMessage", payload: "Gasto Actualizado!" });
     })
     .catch((error) => {
       dispatch({ type: "errorMessage", payload: error.message });
@@ -102,7 +118,7 @@ export const { Provider, Context } = createDataContext(
   {
     gastos: [],
     errorMessage: "",
-    currentNote: { id: "", descripcion: "", monto: "" },
+    currentGasto: { id: "", descripcion: "", monto: "" },
 
   }
 );

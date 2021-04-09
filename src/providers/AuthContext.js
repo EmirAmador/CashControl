@@ -70,7 +70,7 @@ const signout = (dispatch) => () => {
   firebase
     .auth()
     .signOut()
-    .then(() => {retonar
+    .then(() => {
       dispatch({ type: "signout", payload: {} });
     })
     .catch((error) => {

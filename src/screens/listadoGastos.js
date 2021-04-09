@@ -28,20 +28,11 @@ const listadoGastos = ({ navigation }) => {
         }
       }, [gastoState.errorMessage]);
     
-    /*const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
-           gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);*
-    var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
     
-    
-    var suma = 0;
-    montos ? montos.forEach(function(monto){
-        suma += monto;
-    }):null; 
-   console.log(suma);*/
 
        return (
 
-            <Container style={styles.fondo}>
+            <>
                 <Toast ref={(ref) => Toast.setRef(ref)} />
 
                 <LinearGradient 
@@ -53,13 +44,8 @@ const listadoGastos = ({ navigation }) => {
                         
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
-                       
-                       <Card style={styles.lista}>
+                        <ListaGasto navigation={navigation} gastos={gastoState.gastos} />
 
-
-                                <ListaGasto gastos={gastoState.gastos} navigation={navigation}/>
-
-                        </Card>
                         <Fab
                             active={true}
                             position="bottomRight"
@@ -73,7 +59,7 @@ const listadoGastos = ({ navigation }) => {
                         </Fab>
                     </View>
                 </LinearGradient>
-            </Container>
+            </>
         );                  
 }
 
