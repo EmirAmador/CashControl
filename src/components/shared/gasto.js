@@ -1,24 +1,49 @@
-import React from "react";
+import React ,{useContext} from "react";
 import { Dimensions, StyleSheet } from "react-native";
-import { Card,Text,CardItem } from "native-base";
+import { Card,Text,CardItem,ScrollView,Button ,SwipeRow,Icon} from "native-base";
+import {Context as GastoContext } from "../../providers/GastoContext";
 
-const { width, height } = Dimensions.get("screen");
+const { width, height } = Dimensions.get("window");
+
+
+
 
 const Gasto = ({ descripcion, monto }) => {
+
+  const { width, height } = Dimensions.get("screen");
+const { state: gastoState, deleteGasto } = useContext(GastoContext);
+
+
+  const handleDeleteGasto= () => {
+    deleteGasto(
+      gastoState.currentNote.id,
+    );
+    alert('Gasto Eliminado');
+  };
+
   return (
-    
-    <Card style={styles.container}>
+    <SwipeRow
+    rightOpenValue={-85}
+    body={
+      <Card style={styles.container}>
         <Text>{descripcion}</Text>
         <Text>{monto}</Text>
-    </Card>
+      </Card>
+    }
+    right={
+      <Button danger onPress={() => handleDeleteGasto()}>
+        <Icon active name="trash" />
+      </Button>
+    }
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: width * 0.45,
-    height: height * 0.2,
+    width: width * 0.90,
+    height: height * 0.07,
     margin: 5,
     
   },

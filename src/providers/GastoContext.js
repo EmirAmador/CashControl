@@ -21,6 +21,8 @@ const gastoReducer = (state, action) => {
               ...gasto,
               descripcion: action.payload.gasto.descripcion,
               monto: action.payload.gasto.monto,
+              timestamp: action.payload.gasto.timestamp,
+
             };
           }
 
@@ -38,10 +40,11 @@ const gastoReducer = (state, action) => {
 const gastosRef = firebase.firestore().collection("gastos");
 
 // Almacena una nueva nota para el usuario actual
-const createGasto = (dispatch) => (descripcion, monto,autor) => {
+const createGasto = (dispatch) => (descripcion, monto,timestamp, autor) => {
   const data = {
     descripcion,
     monto,
+    timestamp,
     userId : autor,
   };
 
@@ -91,14 +94,14 @@ const setCurrentGasto = (dispatch) => (gasto) => {
 };
 
 // Actualizar una nota existente
-const updateGasto = (dispatch) => (id, descripcion, monto) => {
+const updateGasto = (dispatch) => (id, descripcion, monto,timestamp) => {
   gastosRef
     .doc(id)
-    .update({ descripcion, monto})
+    .update({ descripcion, monto ,timestamp})
     .then(() => {
       dispatch({
         type: "updateGasto",
-        payload: { gasto: { id, descripcion, monto } },
+        payload: { gasto: { id, descripcion, monto ,timestamp} },
       });
       dispatch({ type: "errorMessage", payload: "Gasto Actualizado!" });
     })
@@ -109,7 +112,7 @@ const updateGasto = (dispatch) => (id, descripcion, monto) => {
 const deleteGasto = (dispatch) => (id) => {
   notesRef
     .doc(id)
-    .delete()
+    .delete({id})
     .then(() => {
     dispatch({
         type: "deleteGasto",
