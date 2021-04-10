@@ -39,39 +39,7 @@ const SigninForm = () => {
   const handleSignin = () => {
     // Iniciar sesión implementado el Contexto de autenticación
     signin(email, password);
-    /*
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        // Obtener el Unique Identifier generado para cada usuario
-        // Firebase -> Authentication
-        
-        const uid = response.user.uid;
-        console.log(uid);
-        // Obtener la colección desde Firebase
-        const usersRef = firebase.firestore().collection("users");
-
-        // Verificar que el usuario existe en Firebase authentication
-        // y también está almacenado en la colección de usuarios.
-        usersRef
-          .doc(uid)
-          .get()
-          .then((firestoreDocument) => {
-            if (!firestoreDocument.exists) {
-              setError("User does not exist in the database!");
-              return;
-            }
-
-            // Obtener la información del usuario y enviarla a la pantalla Home
-            const user = firestoreDocument.data();
-
-            navigation.navigate("mainScreen", { user });
-          });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });*/
+    
   };
 
   return (

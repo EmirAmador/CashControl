@@ -7,7 +7,6 @@ import SigninForm  from "../components/signInForm";
 const { width, height } = Dimensions.get("window");
 
 const login = ({ navigation }) => {
-    //const { userCreated } = route.params;
     return(
         <Container style={styles.Fondo}  >
             <View  style={styles.viewHeather}>

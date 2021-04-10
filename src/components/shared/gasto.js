@@ -8,12 +8,8 @@ const Gasto = ({ descripcion, monto }) => {
   return (
     
     <Card style={styles.container}>
-      
         <Text>{descripcion}</Text>
-
         <Text>{monto}</Text>
-      
-      
     </Card>
   );
 };
@@ -24,7 +20,7 @@ const styles = StyleSheet.create({
     width: width * 0.45,
     height: height * 0.2,
     margin: 5,
-    // padding: 5,
+    
   },
   content: {
     flex: 1,

@@ -111,7 +111,7 @@ const deleteGasto = (dispatch) => (id) => {
     .doc(id)
     .delete()
     .then(() => {
-      dispatch({
+    dispatch({
         type: "deleteGasto",
         payload: { gasto: { id } },
       });

@@ -1,7 +1,7 @@
-import React, { Component, useEffect, useState, useContext } from "react";
-import {Container,View,Header,Button, Right} from "native-base";
+import React, {  useContext } from "react";
+import {Container,View,Button} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
-import { StyleSheet, Text,Dimensions, Image} from "react-native";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from "react-native";
 import {Context as AuthContext} from "../providers/AuthContext";
@@ -18,7 +18,7 @@ const mainScreen = ({ navigation }) => {
                      start={{ x: 0, y: 1 }}
                      end={{ x: 1, y: 0 }}> 
                     <View  >
-                      <TouchableOpacity style={styles.logout} onPress={() => navigation.navigate("login")}>
+                      <TouchableOpacity style={styles.logout} onPress={() => signout()}>
                         <MaterialIcons name="logout" size={30} color="black" />
                       </TouchableOpacity>
 
@@ -36,12 +36,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>
                         </Button> 
-                        <Button
-                         title="Signout"
-                          onPress={() => {
-                            signout();
-                          }}
-                        />
+                        
                 </View>
 
             </LinearGradient>

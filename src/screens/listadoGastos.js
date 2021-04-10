@@ -1,10 +1,8 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fab,Left,Body,List} from "native-base";
+import React, { useEffect, useState ,useContext} from "react";
+import {View,Icon,Fab} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScrollView } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
-import { MaterialIcons } from '@expo/vector-icons';
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Toast from "react-native-toast-message";
@@ -12,7 +10,7 @@ import ListaGasto from "../components/shared/ListaGasto"
 
 
 const listadoGastos = ({ navigation }) => { 
-    const { state, signout } = useContext(AuthContext);
+    const { state} = useContext(AuthContext);
     const {state: gastoState, getGastos , clearMessage} = useContext(GastoContext);
 
     useEffect(() => {

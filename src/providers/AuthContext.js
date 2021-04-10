@@ -8,8 +8,8 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "signin":
       return { ...state, user: action.payload, loggedIn: true };
-    case "signout":
-      return { ...state, user: action.payload, loggedIn: false };
+      case "signout":
+        return { ...state, user: action.payload, loggedIn: false };
     case "persistLogin":
       return {
         ...state,
@@ -89,11 +89,13 @@ const persistLogin = (dispatch) => () => {
       userRef
         .doc(user.uid)
         .get()
-        .then((document) => {
+        .then((documento) => {
           dispatch({
             type: "persistLogin",
-            payload: { user: document.data(), loggedIn: true },
+            payload: { user: documento.data(), loggedIn: true },
           });
+          
+
         })
         .catch((error) => {
           dispatch({ type: "errorMessage", payload: error.message });
