@@ -1,8 +1,11 @@
-import React, {  useContext} from "react";
+import React, { useEffect, useContext} from "react";
 import {Container,View,Header,Button, Left} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
-//import { ContextoGastos } from "../src/context/movimientosContext";
+import {Context as GastoContext } from "../providers/GastoContext";
+import {Context as AuthContext} from "../providers/AuthContext"
+import { MaterialIcons } from '@expo/vector-icons';
+
 //import { ContextoIngresos } from "../src/context/ingresoContext";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -18,28 +21,41 @@ const chartConfig = {
   };
 
 const balance = ({ navigation }) => { 
-  /*const {gastos} = useContext(ContextoGastos);
-  const {ingresos} = useContext(ContextoIngresos);
+  const { state} = useContext(AuthContext);
 
-  var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
-  var montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+  const {state: gastoState, getGastos} = useContext(GastoContext);
+  //const {ingresos} = useContext(ContextoIngresos);
+  
+  useEffect(() => {
+    getGastos(state.user.id);
+  }, []);
+  var gastos= gastoState.gastos;
+  console.log(gastos);
+  var montos = [];
+  montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+  console.log(montos);
 
-    
-    var sumaGasto = 0;
-    montos ? montos.forEach(function(monto){
-        sumaGasto += monto;
-    }):null; 
+  //var montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+  var montosIngreso = 500;
 
+
+    //var sumaGasto = 0;
+    const sumaGasto = montos.reduce((a, b) => Number(a) + Number(b),0);
+
+
+    console.log(sumaGasto);
+
+/*
     var sumaIngreso = 0;
     montosIngreso ? montosIngreso.forEach(function(monto){
         sumaIngreso += monto;
-    }):null; 
-
-     var resta = sumaIngreso - sumaGasto; 
+    }):null; */
+console.log(gastos);
+     var resta = montosIngreso - sumaGasto; 
   const data = [
     {
       name: "Ingresos",
-      population: sumaIngreso,
+      population: montosIngreso,
       color: "#236266",
       legendFontColor: "black",
       legendFontSize: 15
@@ -51,7 +67,7 @@ const balance = ({ navigation }) => {
       legendFontColor: "black",
       legendFontSize: 15
     }
-  ];*/
+  ];
        return (
             <Container style={styles.Fondo}  >
                 
@@ -64,7 +80,7 @@ const balance = ({ navigation }) => {
                     <Text style={styles.h1}>Balance</Text>
                     <View style={styles.divisor}/>
                     {
-                      ingresos,gastos <= 0 ?
+                      gastos <= 0 ?
                       <View>
                         <Text style={styles.advertencia}>Registra tus ingresos y gastos para ver Balance</Text>
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
