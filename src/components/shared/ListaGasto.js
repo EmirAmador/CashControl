@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import { Context as GastoContext } from "../../providers/GastoContext";
 import Gasto from "./gasto";
@@ -28,10 +29,11 @@ const ListaGasto = ({ navigation, gastos }) => {
         console.log(gastos);
     return (
       <View style={styles.lista}>
-          
+              <ScrollView>
+
         <FlatList
           data={gastos}
-          numColumns={2}
+          numColumns={1}
           renderItem={({item }) => (
             <>
               <TouchableOpacity
@@ -46,9 +48,12 @@ const ListaGasto = ({ navigation, gastos }) => {
                   monto={item.monto}
                 />
               </TouchableOpacity>
+              
             </>
           )}
         />
+            </ScrollView>
+
       </View>
     );
   };

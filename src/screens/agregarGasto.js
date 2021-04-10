@@ -1,5 +1,5 @@
 import React, {  useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left} from "native-base";
+import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left, Label} from "native-base";
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,6 +7,9 @@ const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { format } from "date-fns";
+
 
  const agregarGasto  = ({ navigation }) =>{ 
 
@@ -19,41 +22,16 @@ import {Context as GastoContext } from "../providers/GastoContext";
     const [descripcion, setDescripcion] = useState("");
     const [errorDescripcion, setErrorDescripcion] = useState(false);
     const [enableSave, setEnableSave] = useState(true);
+    const [timestamp, setTimestamp] = useState(Date.now());
+
 
 
 
     const handleSaveNote = () => {
-        createGasto( descripcion, monto, state.user.id);
+        createGasto( descripcion, monto,timestamp, state.user.id);
         navigation.goBack();
     };
-/*
-          useEffect(() => {
-            const loadFontsAsync = async () => {
-              await Font.loadAsync({
-                Roboto_medium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
-              }).then(() => {
-                setFontsLoaded(true);
-              });
-            };
-        
-            loadFontsAsync();
-          }, []);*/
-         
-          // Ejecutar el efecto cuando el valor de la nota cambie
-           /* useEffect(() => {
-              if (descripcion) setEnableSave(false);
-              else setEnableSave(true);
-            }, [descripcion]);*/
 
-          /*
-          if (!fontsLoaded)
-          return (
-            <Content contentContainerStyle={styles.content}>
-              <Spinner color="blue" />
-            </Content>
-          );
-          console.log(categorias);
-*/
             return (
                 <Container style={styles.Fondo}  >
                     
@@ -78,35 +56,20 @@ import {Context as GastoContext } from "../providers/GastoContext";
                                 <FontAwesome5 name="money-bill-alt" size={24} color="white" />
                                 <Input  placeholder='Monto'
                                  value={monto}
-                                 onChangeText={setMonto}/>
+                                 onChangeText={setMonto}
+                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                 />
+                                 
                             </Item>
                             
                             <Item>
-                              <AntDesign name="select1" size={24} color="white" />            
-                                <Picker
-                                    mode="dropdown"
-                                    placeHolderText="Fecha"
-                                    label="Basic example"
-                                    /*selectedValue={categoria}
-                                    onValueChange={ (item) => {
-                                      setCategoria(item)
-                                    }}*/
-                                    animateYearScrolling
-                                    iosHeader="Categorias"
-                                    
-                                  >
-                                    {/*
-                                      categorias ? categorias.map((categoria)=>{
-                                        return(
-                                          <Picker.Item key={categoria.id.toString()} label={categoria.categoria} value={categoria.id}/>
-                                        )
-                                      }
+                            <MaterialIcons name="date-range" size={24} color="black" />
+                              <Text> {`${format(timestamp, "eee H:m")}`}
+                          </Text>
 
-                                      )
-                                    : null*/
-                                    }
+
+                                    
                                    
-                                  </Picker>
                             </Item>
 
                             <Button style={styles.botonCrear} rounded onPress={handleSaveNote}>

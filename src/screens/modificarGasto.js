@@ -17,6 +17,8 @@ import {Context as AuthContext} from "../providers/AuthContext"
         const { state } = useContext(AuthContext);
         const [descripcion, setDescripcion] = useState("");
         const [monto, setMonto] = useState("");
+        const [timestamp, setTimestamp] = useState("");
+
         const [errorDescripcion, setErrorDescripcion] = useState(false);
 
 
@@ -32,6 +34,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
               gastoState.currentGasto.id,
               descripcion ,
               monto,
+              timestamp,
               
             );
             navigation.goBack();
