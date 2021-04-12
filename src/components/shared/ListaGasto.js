@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useEffect, useContext } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -18,19 +18,22 @@ const { width, height } = Dimensions.get("window");
 const ListaGasto = ({ navigation, gastos }) => {
   const { state: gastoState,setCurrentGasto,deleteGasto } = useContext(GastoContext);
 
+  useEffect(() => {
+    gastoState.currentGasto
+  }, [gastoState.currentGasto]);
+
     const handleSelectGasto = (gasto) => {
       setCurrentGasto(gasto);
       console.log("hola",state);
 
       navigation.navigate("modificarGasto");
     };
-    /*const handleDeleteGasto= (gasto) => {
-      setCurrentGasto(gasto);
-      alertDelete();
-      deleteGasto(
-       gastoState.currentGasto.id,
-      );
-    };*/
+
+    const handleDeleteGasto = (gasto) => {
+      deleteGasto(gasto.id);
+      navigation.navigate("listadoGastos");
+    };
+    
 
     const emptyFlatList = (
       <View style={styles.emptyNotes}>
@@ -51,15 +54,13 @@ const ListaGasto = ({ navigation, gastos }) => {
                 onPress: () => console.log("Cancel Pressed"),
                 style: "cancel"
               },
-              { text: "OK", onPress: () => deleteGasto(gasto.id) }
+              { text: "OK", onPress: () => handleDeleteGasto(gasto)}
             ]
           );
         }
 
     return (
       <View style={styles.lista}>
-              <ScrollView>
-
         <FlatList
           data={gastos}
           numColumns={1}
@@ -84,8 +85,6 @@ const ListaGasto = ({ navigation, gastos }) => {
             </>
           )}
         />
-            </ScrollView>
-
       </View>
     );
   };
