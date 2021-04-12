@@ -7,26 +7,55 @@ import {
   View,
   Dimensions,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Context as GastoContext } from "../../providers/GastoContext";
 import Gasto from "./gasto";
+
 const { width, height } = Dimensions.get("window");
 
 
 const ListaGasto = ({ navigation, gastos }) => {
-    const { state, setCurrentGasto } = useContext(GastoContext);
-  
+  const { state: gastoState,setCurrentGasto,deleteGasto } = useContext(GastoContext);
+
     const handleSelectGasto = (gasto) => {
       setCurrentGasto(gasto);
+      console.log("hola",state);
+
       navigation.navigate("modificarGasto");
     };
-  
+    /*const handleDeleteGasto= (gasto) => {
+      setCurrentGasto(gasto);
+      alertDelete();
+      deleteGasto(
+       gastoState.currentGasto.id,
+      );
+    };*/
+
     const emptyFlatList = (
       <View style={styles.emptyNotes}>
         <Text>Aun no tienes gastos para mostrar...</Text>
       </View>
     );
-        console.log(gastos);
+
+
+        const alertDelete = (gasto) => {
+          setCurrentGasto(gasto);
+          console.log("hola",gasto.id);
+          Alert.alert(
+            "Eliminar Gasto",
+            "Estas seguro de eliminar este gasto?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => deleteGasto(gasto.id) }
+            ]
+          );
+        }
+
     return (
       <View style={styles.lista}>
               <ScrollView>
@@ -39,6 +68,9 @@ const ListaGasto = ({ navigation, gastos }) => {
               <TouchableOpacity
                 onPress={() => {
                   handleSelectGasto(item);
+                }}
+                onLongPress={() => {
+                  alertDelete(item);
                 }}
               >
                   

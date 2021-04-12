@@ -110,9 +110,9 @@ const updateGasto = (dispatch) => (id, descripcion, monto,timestamp) => {
     });
 };
 const deleteGasto = (dispatch) => (id) => {
-  notesRef
+  gastosRef
     .doc(id)
-    .delete({id})
+    .delete()
     .then(() => {
     dispatch({
         type: "deleteGasto",
