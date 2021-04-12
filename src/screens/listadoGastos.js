@@ -1,5 +1,5 @@
 import React, { useEffect, useState ,useContext} from "react";
-import {View,Icon,Fab} from "native-base";
+import {View,Icon,Fab, Header, Left, Right, Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
@@ -32,14 +32,17 @@ const listadoGastos = ({ navigation }) => {
 
             <>
                 <Toast ref={(ref) => Toast.setRef(ref)} />
-
+                <Header style={styles.header}>
+                    <Body><Text style={styles.textoH}>CashControl</Text></Body>
+                </Header>
+                    
                 <LinearGradient 
                    colors={['#480048','#C04848']} 
                    style={styles.LinearGradient}
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
                    <View>
-                        
+                    
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
                         <ListaGasto navigation={navigation} gastos={gastoState.gastos} />
@@ -73,15 +76,21 @@ const styles = StyleSheet.create({
       width: width
       
     },
+    textoH: {
+        fontSize: 30,
+        marginRight: 0,
+        color: 'black',
+        alignSelf:"center"
+    },
 
     header: {
-        backgroundColor: '#3CCCD6',
+        backgroundColor: '#ffff',
     },
 
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 80,
+        marginTop: 20,
         color: '#FFFFFF',
     },
 
