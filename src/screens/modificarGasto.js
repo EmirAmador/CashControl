@@ -40,7 +40,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
             navigation.goBack();
           };
           
-
+console.log(gastoState.currentGasto.id);
             return (
                 <Container style={styles.Fondo}  >
                   

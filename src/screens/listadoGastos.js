@@ -15,7 +15,7 @@ const listadoGastos = ({ navigation }) => {
 
     useEffect(() => {
         getGastos(state.user.id);
-      }, []);
+      }, [state]);
 
       useEffect(() => {
         if (gastoState.errorMessage) {
