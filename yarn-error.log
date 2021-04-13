@@ -1,30 +1,29 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-safe-area-content
+  C:\Program Files\nodejs\node.exe C:\Users\usuario\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add expo-cli
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files (x86)\Git\cmd;C:\xampp\php;C:\composer;C:\WINDOWS\System32\OpenSSH\;C:\Users\user\AppData\Roaming\npm;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\Composer\vendor\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;
+  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\usuario\AppData\Local\Microsoft\WindowsApps;C:\Users\usuario\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\usuario\AppData\Roaming\npm
 
 Yarn version: 
   1.22.10
 
 Node version: 
-  15.0.1
+  14.16.1
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-safe-area-content: Not found
-      at Request.params.callback [as _callback] (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
-      at Request.self.callback (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
-      at Request.emit (node:events:327:20)
-      at Request.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
-      at Request.emit (node:events:327:20)
-      at IncomingMessage.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
-      at Object.onceWrapper (node:events:433:28)
-      at IncomingMessage.emit (node:events:339:22)
-      at endReadableNT (node:internal/streams/readable:1289:12)
-      at processTicksAndRejections (node:internal/process/task_queues:80:21)
+  Error: https://registry.yarnpkg.com/date-fns/-/date-fns-2.20.1.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\usuario\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141289:19)
+      at Object.onceWrapper (events.js:421:28)
+      at ClientRequest.emit (events.js:315:20)
+      at TLSSocket.emitRequestTimeout (_http_client.js:784:9)
+      at Object.onceWrapper (events.js:421:28)
+      at TLSSocket.emit (events.js:327:22)
+      at TLSSocket.Socket._onTimeout (net.js:483:8)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
 
 npm manifest: 
   {
@@ -37,10 +36,13 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@react-native-community/datetimepicker": "^3.4.3",
       "@react-native-community/masked-view": "^0.1.10",
       "@react-navigation/native": "^5.9.3",
       "@react-navigation/stack": "^5.14.3",
-      "expo": "~40.0.0",
+      "date-fns": "^2.20.1",
+      "email-validator": "^2.0.4",
+      "expo": "^40.0.1",
       "expo-font": "~8.4.0",
       "expo-linear-gradient": "~8.4.0",
       "expo-splash-screen": "~0.8.1",
@@ -53,11 +55,13 @@ npm manifest:
       "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
       "react-native-chart-kit": "^6.11.0",
       "react-native-elements": "^3.3.0",
-      "react-native-gesture-handler": "^1.8.0",
-      "react-native-reanimated": "^1.13.2",
-      "react-native-safe-area-context": "^3.1.9",
-      "react-native-screens": "^2.15.2",
+      "react-native-gesture-handler": "^1.10.3",
+      "react-native-material-bottom-navigation": "^1.0.5",
+      "react-native-reanimated": "^1.13.3",
+      "react-native-safe-area-context": "^3.2.0",
+      "react-native-screens": "^2.18.1",
       "react-native-svg": "^12.1.0",
+      "react-native-toast-message": "^1.4.9",
       "react-native-vector-icons": "^8.1.0",
       "react-native-web": "~0.13.12"
     },
@@ -2159,6 +2163,13 @@ Lockfile:
     dependencies:
       invariant "^2.2.4"
   
+  "@react-native-community/datetimepicker@^3.4.3":
+    version "3.4.3"
+    resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.4.3.tgz#e57cc254a53ea7c4229ad7c4cfc3368c109c1db3"
+    integrity sha512-FaryfNYxWvgL2YH+CPhbKl2viLwsYFSq+vrhQT8IHB+uOTPhRtRZ0sWSU1N3eWy8HFwqmTw2Ao5uVgn8cvsUew==
+    dependencies:
+      invariant "^2.2.4"
+  
   "@react-native-community/masked-view@^0.1.10":
     version "0.1.10"
     resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
@@ -3280,6 +3291,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.7.tgz#2a5fb75e1015e84dd15692f71e89a1450290950b"
     integrity sha512-KxnUB0ZMlnUWCsx2Z8MUsr6qV6ja1w9ArPErJaJaF8a5SOWoHLIszeCTKGRGRgtLgYrs1E8CHkNSP1VZTTPc9g==
   
+  date-fns@^2.20.1:
+    version "2.20.1"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.20.1.tgz#7e60b7035284a5f83e37500376e738d9f49ecfd3"
+    integrity sha512-8P5M8Kxbnovd0zfvOs7ipkiVJ3/zZQ0F/nrBW4x5E+I0uAZVZ80h6CKd24fSXQ5TLK5hXMtI4yb2O5rEZdUt2A==
+  
   dayjs@^1.8.15:
     version "1.10.4"
     resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
@@ -3450,6 +3466,11 @@ Lockfile:
     version "1.3.682"
     resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.682.tgz#f4b5c8d4479df96b61e508a721d6c32c1262ef23"
     integrity sha512-zok2y37qR00U14uM6qBz/3iIjWHom2eRfC2S1StA0RslP7x34jX+j4mxv80t8OEOHLJPVG54ZPeaFxEI7gPrwg==
+  
+  email-validator@^2.0.4:
+    version "2.0.4"
+    resolved "https://registry.yarnpkg.com/email-validator/-/email-validator-2.0.4.tgz#b8dfaa5d0dae28f1b03c95881d904d4e40bfe7ed"
+    integrity sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==
   
   emoji-regex@^7.0.1:
     version "7.0.3"
@@ -3761,7 +3782,7 @@ Lockfile:
       fbemitter "^2.1.1"
       uuid "^3.4.0"
   
-  expo@~40.0.0:
+  expo@^40.0.1:
     version "40.0.1"
     resolved "https://registry.yarnpkg.com/expo/-/expo-40.0.1.tgz#20ae9f9c787ba1662037094dfd6982380f2c0288"
     integrity sha512-9NrhimvP44I1aDjGHMU4F0izCyfFTTYAQ6xZpWpuc+ZWRZqg8Zv62zNRlzBn+Ydaf1heSucnlJJ3Sp2gMdOEnQ==
@@ -6153,7 +6174,7 @@ Lockfile:
     dependencies:
       asap "~2.0.6"
   
-  prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6292,7 +6313,7 @@ Lockfile:
       react-native-ratings "^7.3.0"
       react-native-size-matters "^0.3.1"
   
-  react-native-gesture-handler@^1.8.0:
+  react-native-gesture-handler@^1.10.3:
     version "1.10.3"
     resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
     integrity sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw==
@@ -6308,6 +6329,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
     integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
   
+  react-native-material-bottom-navigation@^1.0.5:
+    version "1.0.5"
+    resolved "https://registry.yarnpkg.com/react-native-material-bottom-navigation/-/react-native-material-bottom-navigation-1.0.5.tgz#4552cc8529ba722f044a4a66d7d4deb73d931c82"
+    integrity sha512-SpbFHH/2cJELZ9z4THE7xMCM8uBBvjqfN3+BB30IfM0144gxHFSVdzFoTj7I2U7jV/cWQbeJ8vRN99ACTlSpwA==
+    dependencies:
+      prop-types "^15.6.1"
+  
   react-native-ratings@^7.3.0:
     version "7.4.0"
     resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-7.4.0.tgz#2b93c9bdd201238591d09747791b4c55e5862959"
@@ -6316,10 +6344,10 @@ Lockfile:
       lodash "^4.17.15"
       prop-types "^15.7.2"
   
-  react-native-reanimated@^1.13.2:
-    version "1.13.2"
-    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.13.2.tgz#1ae5457b24b4913d173a5a064bb28eae7783d293"
-    integrity sha512-O+WhgxSjOIzcVdAAvx+h2DY331Ek1knKlaq+jsNLpC1fhRy9XTdOObovgob/aF2ve9uJfPEawCx8381g/tUJZQ==
+  react-native-reanimated@^1.13.3:
+    version "1.13.3"
+    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.13.3.tgz#fb0e1d582c8866015140f2159e147ffe6e798a3a"
+    integrity sha512-i714H24dv6ncpFO7/SZ0PfAMbvjgVbF8Ow2NPtowoZAz8osS54DmTMrkgJ9Za+uEku/s0AEaxqiXG2Xgntvv2g==
     dependencies:
       fbjs "^1.0.0"
   
@@ -6328,12 +6356,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
     integrity sha512-wmcGbdyE/vBSL5IjDPReoJUEqxkZsywZw5gPwsVUV1NBpw5eTIdnL6Y0uNKHE25Z661moxPHQz6kwAkYQyorxA==
   
-  react-native-safe-area-context@^3.1.9:
+  react-native-safe-area-context@^3.2.0:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.2.0.tgz#06113c6b208f982d68ab5c3cebd199ca93db6941"
     integrity sha512-k2Nty4PwSnrg9HwrYeeE+EYqViYJoOFwEy9LxL5RIRfoqxAq/uQXNGwpUg2/u4gnKpBbEPa9eRh15KKMe/VHkA==
   
-  react-native-screens@^2.15.2:
+  react-native-screens@^2.18.1:
     version "2.18.1"
     resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.18.1.tgz#47b9991c6f762d00d0ed3233e5283d523e859885"
     integrity sha512-r5WZLpmx2hHjC1RgMdPq5YpSU9tEhBpUaZ5M1SUtNIONyiLqQVxabhRCINdebIk4depJiIl7yw2Q85zJyeX6fw==
@@ -6350,6 +6378,13 @@ Lockfile:
     dependencies:
       css-select "^2.1.0"
       css-tree "^1.0.0-alpha.39"
+  
+  react-native-toast-message@^1.4.9:
+    version "1.4.9"
+    resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-1.4.9.tgz#47f33ac312fe2aee5dbdd4ae14745fa0d354102e"
+    integrity sha512-QhHzzsiymKpHEWz2nUKQjQMRuGN+/a8cOwDXJcz3TQFY03p20f6sJW9JKw3KkMfvWiUhGbApCPpNU6tHaAZ32w==
+    dependencies:
+      prop-types "^15.7.2"
   
   react-native-vector-icons@^7.0.0:
     version "7.1.0"
