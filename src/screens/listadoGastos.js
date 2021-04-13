@@ -7,7 +7,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Toast from "react-native-toast-message";
 import ListaGasto from "../components/shared/ListaGasto"
-
+import BottomTab from "../components/bottomTab"
 
 const listadoGastos = ({ navigation }) => { 
     const { state} = useContext(AuthContext);
@@ -26,21 +26,16 @@ const listadoGastos = ({ navigation }) => {
         }
       }, [gastoState.errorMessage]);
     
-    
-
        return (
-
             <>
                 <Toast ref={(ref) => Toast.setRef(ref)} />
-                <Header style={styles.header}>
-                    <Body><Text style={styles.textoH}>CashControl</Text></Body>
-                </Header>
-                    
+                
                 <LinearGradient 
                    colors={['#480048','#C04848']} 
                    style={styles.LinearGradient}
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
+                   <View style={styles.view}></View>
                    <View>
                     
                        <Text style={styles.h1}>Gastos</Text>
@@ -58,8 +53,12 @@ const listadoGastos = ({ navigation }) => {
                             >
                             <Icon name="plus" type="FontAwesome" />
                         </Fab>
+                        
+                        <BottomTab></BottomTab>
                     </View>
+                    
                 </LinearGradient>
+                
             </>
         );                  
 }
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
       height: height,
     },
   
-    linearGradient: {
+    LinearGradient: {
       height: height,
       width: width
       
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 20,
+        marginTop: 5,
         color: '#FFFFFF',
     },
 
@@ -135,6 +134,10 @@ const styles = StyleSheet.create({
         height: 50,
         marginTop: 40,
         marginLeft:19,
+    },
+
+    view: {
+        height: 97
     },
 });
 

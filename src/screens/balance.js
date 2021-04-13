@@ -5,6 +5,7 @@ import { PieChart } from "react-native-chart-kit";
 import {Context as GastoContext } from "../providers/GastoContext";
 import {Context as AuthContext} from "../providers/AuthContext"
 import { MaterialIcons } from '@expo/vector-icons';
+import BottomTab from "../components/bottomTab"
 
 //import { ContextoIngresos } from "../src/context/ingresoContext";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -111,7 +112,7 @@ console.log(gastos);
     
                     {
                       resta < 0 ?  
-                      <Text  style={styles.h2}>Te has pasado de tu presupesto </Text>
+                      <Text  style={styles.h2}>Te has pasado de tu presupuesto </Text>
                         : null
                     }
                     {
@@ -124,7 +125,9 @@ console.log(gastos);
                       <Text ></Text>
                         : null
                     }
+                 
                 </LinearGradient>
+                <BottomTab></BottomTab>
             </Container>
         );                  
 }
@@ -135,8 +138,8 @@ const styles = StyleSheet.create({
     height: height,
     },
   
-    linearGradient: {
-      height: height,
+    LinearGradient: {
+      height: height * 0.9,
       width: width
       
     },
@@ -146,12 +149,11 @@ const styles = StyleSheet.create({
     },
 
     h1:{
-        fontSize: 33,
-        textAlign:"center",
-        marginTop: 12,
-        color: '#236266',
-        
-    },
+      fontSize: 33,
+      textAlign:"center",
+      marginTop: 50,
+      color: '#FFFFFF',
+  },
 
     h2:{
       fontSize: 33,
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
     },
 
     divisor:{
-      borderBottomColor: '#236266',
+      borderBottomColor: '#fff',
       borderBottomWidth: 2,
       width: width * 0.9,
       alignSelf: "center"
@@ -238,6 +240,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 19,
     },
+
+    
  });
 
 export default balance;

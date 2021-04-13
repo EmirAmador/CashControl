@@ -5,7 +5,7 @@ import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from "react-native";
 import {Context as AuthContext} from "../providers/AuthContext";
-//import BottomTab from "../components/bottomTab"
+import BottomTab from "../components/bottomTab"
 
 const { width, height } = Dimensions.get("window");
 
@@ -40,9 +40,9 @@ const mainScreen = ({ navigation }) => {
                         </Button> 
                         
                     </View>
-
+                    
                   </LinearGradient>
-
+                  
               </Container>
         );                  
 }
