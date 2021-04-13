@@ -4,16 +4,16 @@ import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
 import * as Font from "expo-font";
-import { Context as GastoContext } from "../providers/GastoContext";
+import { Context as IngresoContext } from "../providers/IngresoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
 
 
 
- const modificarGasto  = ({navigation }) =>{ 
+ const modificarIngreso = ({navigation}) =>{ 
 
 
-        const { state: gastoState, updateGasto } = useContext(GastoContext);
+        const { state: ingresoState, updateIngreso } = useContext(IngresoContext);
         const { state } = useContext(AuthContext);
         const [descripcion, setDescripcion] = useState("");
         const [monto, setMonto] = useState("");
@@ -23,15 +23,15 @@ import Modificar from "../components/shared/modificar";
 
 
           useEffect(() => {
-            if (gastoState.currentGasto.id) {
-              setDescripcion(gastoState.currentGasto.descripcion);
-              setMonto(gastoState.currentGasto.monto);
+            if (ingresoState.currentIngreso.id) {
+              setDescripcion(ingresoState.currentIngreso.descripcion);
+              setMonto(ingresoState.currentIngreso.monto);
             }
-          }, [gastoState.currentGasto]);
+          }, [ingresoState.currentIngreso]);
         
-          const handleSaveGasto = () => {
-            updateGasto(
-              gastoState.currentGasto.id,
+          const handleSaveIngreso = () => {
+            updateIngreso(
+              ingresoState.currentIngreso.id,
               descripcion ,
               monto,
               timestamp,
@@ -52,10 +52,10 @@ import Modificar from "../components/shared/modificar";
                          end={{ x: 1, y: 0 }}>
                         <View >
 
-                            <Text style={styles.textoTitulo}> Modificar Gastos </Text> 
+                            <Text style={styles.textoTitulo}> Modificar Ingresos </Text> 
 
                             <Modificar
-                             handleSave = {handleSaveGasto}
+                             handleSave = {handleSaveIngreso}
                              descripcion={descripcion}
                              setDescripcion={setDescripcion}
                              monto={monto}
@@ -108,4 +108,4 @@ logoImage: {
 },
  });
 
-export default modificarGasto;
+export default modificarIngreso;

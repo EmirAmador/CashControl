@@ -1,10 +1,9 @@
-import React, {  useEffect, useState ,useContext} from "react";
+import React, {  useState ,useContext} from "react";
 import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left, Label} from "native-base";
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
-import { AntDesign } from '@expo/vector-icons'; 
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import { MaterialIcons } from '@expo/vector-icons'; 
@@ -15,7 +14,6 @@ import { format } from "date-fns";
 
 
         
-    const [fontsLoaded, setFontsLoaded] = useState(false);         
     const { createGasto } = useContext(GastoContext);
     const { state } = useContext(AuthContext);
     const [monto, setMonto] = useState("");
@@ -27,7 +25,7 @@ import { format } from "date-fns";
 
 
 
-    const handleSaveNote = () => {
+    const handleSaveGasto = () => {
         createGasto( descripcion, monto,timestamp, state.user.id);
         navigation.goBack();
     };
@@ -72,7 +70,7 @@ import { format } from "date-fns";
                                    
                             </Item>
 
-                            <Button style={styles.botonCrear} rounded onPress={handleSaveNote}>
+                            <Button style={styles.botonCrear} rounded onPress={handleSaveGasto}>
                               <Text style={styles.textoBotones}>
                                 Crear
                               </Text>    

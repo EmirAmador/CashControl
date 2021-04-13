@@ -24,7 +24,7 @@ const ListaGasto = ({ navigation, gastos }) => {
 
     const handleSelectGasto = (gasto) => {
       setCurrentGasto(gasto);
-      console.log("hola",state);
+      //console.log("hola",state);
 
       navigation.navigate("modificarGasto");
     };

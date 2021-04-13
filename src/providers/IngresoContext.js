@@ -21,6 +21,8 @@ const ingresoReducer = (state, action) => {
               ...ingreso,
               descripcion: action.payload.ingreso.descripcion,
               monto: action.payload.ingreso.monto,
+              timestamp: action.payload.gasto.timestamp,
+
             };
           }
 
@@ -38,10 +40,11 @@ const ingresoReducer = (state, action) => {
 const ingresosRef = firebase.firestore().collection("ingresos");
 
 // Almacena una nueva nota para el usuario actual
-const createIngreso = (dispatch) => (descripcion, monto,autor) => {
+const createIngreso = (dispatch) => (descripcion, monto,timestamp,autor) => {
   const data = {
     descripcion,
     monto,
+    timestamp,
     userId : autor,
   };
 
@@ -91,14 +94,14 @@ const setCurrentIngreso = (dispatch) => (ingreso) => {
 };
 
 // Actualizar una nota existente
-const updateIngreso = (dispatch) => (id, descripcion, monto) => {
+const updateIngreso = (dispatch) => (id, descripcion, monto,timestamp) => {
   ingresosRef
     .doc(id)
-    .update({ descripcion, monto})
+    .update({ descripcion, monto,timestamp})
     .then(() => {
       dispatch({
         type: "updateIngreso",
-        payload: { ingreso: { id, descripcion, monto } },
+        payload: { ingreso: { id, descripcion, monto ,timestamp} },
       });
       dispatch({ type: "errorMessage", payload: "Ingreso Actualizado!" });
     })
