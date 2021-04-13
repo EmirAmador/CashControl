@@ -1,15 +1,13 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
+import React, {  useEffect ,useContext} from "react";
+import {View,Icon,Fab} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScrollView } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
-import { MaterialIcons } from '@expo/vector-icons';
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
 import Toast from "react-native-toast-message";
 import ListaIngreso from "../components/shared/ListaIngreso";
-state
+
 const listadoIngresos = ({ navigation }) => {
 
     const { state} = useContext(AuthContext);

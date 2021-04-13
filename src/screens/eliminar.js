@@ -1,16 +1,44 @@
-import React, {  useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {Container,View,Button} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from "react-native";
-import {Context as AuthContext} from "../providers/AuthContext";
-
+import { Context as IngresoContext } from "../providers/IngresoContext";
+import { Context as AuthContext } from "../providers/AuthContext";
 const { width, height } = Dimensions.get("window");
 
-const mainScreen = ({ navigation }) => { 
+const eliminar = ({ navigation }) => { 
+  const { state} = useContext(AuthContext);
 
-  const { signout } = useContext(AuthContext);
+  const { state: ingresoState,deleteIngreso,setCurrentIngreso,getIngresos } = useContext(IngresoContext);
+  
+  
+
+  const handleDeleteIngreso = () => {
+
+    deleteIngreso(ingresoState.currentIngreso.id);
+
+    navigation.goBack();
+
+  };
+
+  const alertDelete = (ingreso) => {
+    Alert.alert(
+      "Eliminar Ingreso",
+      "Estas seguro de eliminar este ingreso?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => handleDeleteIngreso}
+      ]
+    );
+  }
+
+
        return (
             <Container style={styles.Fondo}  >
                  <LinearGradient 
@@ -19,24 +47,16 @@ const mainScreen = ({ navigation }) => {
                      start={{ x: 0, y: 1 }}
                      end={{ x: 1, y: 0 }}> 
                     <View  >
-                      <TouchableOpacity style={styles.logout} onPress={() => signout()}>
-                        <MaterialIcons name="logout" size={30} color="black" />
-                      </TouchableOpacity>
-
-                        <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
-                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
-                          <MaterialIcons name="attach-money" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Ingresos</Text>
+                      
+                        <Text style={styles.textoTitulo}>Eliminar Ingreso </Text> 
+                        <Button  style={styles.botonCancelar} onPress={() => navigation.goBack()}> 
+                            <Text style={styles.textoBotones}>Cancelar</Text>
                         </Button> 
-                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate('listadoGastos')}>
-                          <MaterialIcons name="money-off" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Gastos</Text>
+                        <Button  style={styles.botonOk} onPress={() => handleDeleteIngreso()}>
+                            <Text style={styles.textoBotones}>OK</Text>
                         </Button> 
                         
-                        <Button  style={styles.botonBalance} onPress={() => navigation.navigate("balance")}>
-                          <MaterialIcons name="account-balance" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Balance</Text>
-                        </Button> 
+                      
                         
                     </View>
                     
@@ -68,7 +88,7 @@ const styles = StyleSheet.create({
         marginRight:20,
         alignSelf:"flex-end"
       },
-    botonIngresos:{
+    botonCancelar:{
       width:190,
       height:60,
       backgroundColor:"#ffffff",
@@ -79,7 +99,7 @@ const styles = StyleSheet.create({
       justifyContent:"center",
 
   },
-  botonGastos:{
+  botonOk:{
     width:190,
     height:60,
     backgroundColor:"#ffffff",
@@ -90,28 +110,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
 
 },
-botonMovimientos:{
-  width:190,
-  height:60,
-  backgroundColor:"#ffffff",
-  marginTop:50,
-  alignSelf:"center",
-  borderRadius:26,
-  alignContent:"center",
-  justifyContent:"center",
 
-}  ,
-botonBalance:{
-  width:190,
-  height:60,
-  backgroundColor:"#ffffff",
-  marginTop:50,
-  alignSelf:"center",
-  borderRadius:26, 
-  alignContent:"center",
-  justifyContent:"center",
-
-},
 textoBotones:{
   fontWeight:"bold",
   fontSize:20,
@@ -129,4 +128,4 @@ textoTitulo:{
 
 });
 
-export default mainScreen;
+export default eliminar;

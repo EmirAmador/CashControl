@@ -21,7 +21,7 @@ const ingresoReducer = (state, action) => {
               ...ingreso,
               descripcion: action.payload.ingreso.descripcion,
               monto: action.payload.ingreso.monto,
-              timestamp: action.payload.gasto.timestamp,
+              timestamp: action.payload.ingreso.timestamp,
 
             };
           }
@@ -110,7 +110,7 @@ const updateIngreso = (dispatch) => (id, descripcion, monto,timestamp) => {
     });
 };
 const deleteIngreso = (dispatch) => (id) => {
-  notesRef
+  ingresosRef
     .doc(id)
     .delete()
     .then(() => {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useEffect, useContext } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -6,23 +6,28 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Alert,
 } from "react-native";
 import { Context as IngresoContext } from "../../providers/IngresoContext";
 import { Context as AuthContext } from "../../providers/AuthContext";
-
 import Ingreso from "./ingreso";
 const { width, height } = Dimensions.get("window");
 
 const ListaIngreso = ({ navigation, ingresos }) => {
   const { state} = useContext(AuthContext);
 
-    const { state: IngresoState,setCurrentIngreso,deteleIngreso } = useContext(IngresoContext);
+    const { state: IngresoState,setCurrentIngreso,deleteIngreso } = useContext(IngresoContext);
+
+    const handleSelectDelete = (ingreso) => {
+      setCurrentIngreso(ingreso);
+      navigation.navigate("eliminar");
+    };
 
     const handleSelectIngreso = (ingreso) => {
       setCurrentIngreso(ingreso);
       navigation.navigate("modificarIngreso");
     };
-  
+   
     const emptyFlatList = (
       <View style={styles.emptyNotes}>
         <Text>Aun no tienes ingresos para mostrar...</Text>
@@ -39,6 +44,9 @@ const ListaIngreso = ({ navigation, ingresos }) => {
               <TouchableOpacity
                 onPress={() => {
                   handleSelectIngreso(item);
+                }}
+                onLongPress={() => {
+                  handleSelectDelete(item);
                 }}
               >
                   

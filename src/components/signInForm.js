@@ -1,14 +1,12 @@
 import React, { useState,useEffect,useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
-import { firebase } from "../firebase";
 import Alert from "../components/shared/Shared";
 import {Context as AuthContext} from "../providers/AuthContext"
 
 const SigninForm = () => {
-  // Implementación del Context para funcionalidades de autenticación
   const { state, signin, clearErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

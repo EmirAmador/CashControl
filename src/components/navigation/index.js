@@ -12,7 +12,11 @@ import agregarIngreso from '../../screens/agregarIngreso';
 import registro  from "../../screens/registroUsuario";
 import forgotPassword from '../../screens/forgotPassword';
 import login from "../../screens/login";
-import modificarGasto from "../../screens/modificarGasto"
+import modificarGasto from "../../screens/modificarGasto";
+import modificarIngreso from "../../screens/modificarIngreso";
+import eliminar from "../../screens/eliminar";
+
+
 
 const Stack = createStackNavigator();
 
@@ -45,6 +49,10 @@ const Navigation = () => {
                 <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
                 <Stack.Screen name="forgotPassword" component={forgotPassword}  />
                 <Stack.Screen name="modificarGasto" component={modificarGasto} />
+                <Stack.Screen name="modificarIngreso" component={modificarIngreso} />
+                <Stack.Screen name="eliminar" component={eliminar} />
+
+
                 
             </Stack.Navigator>
             ) : (

@@ -1,7 +1,7 @@
-import { Input, Item, Text } from "native-base";
-import React, { Component, useEffect, useState } from "react";
+import { Text } from "native-base";
+import React from "react";
 import { StyleSheet,Dimensions, Image,TouchableOpacity} from "react-native";
-import {Container,View,Header} from "native-base";
+import {Container,View} from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
 import SigninForm  from "../components/signInForm";
 const { width, height } = Dimensions.get("window");

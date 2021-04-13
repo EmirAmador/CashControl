@@ -1,13 +1,13 @@
 import React, { useEffect, useContext} from "react";
-import {Container,View,Header,Button, Left} from "native-base";
+import {Container,View,Button} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import {Context as GastoContext } from "../providers/GastoContext";
-import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as AuthContext} from "../providers/AuthContext";
+import {Context as IngresoContext} from "../providers/IngresoContext"
+
 import { MaterialIcons } from '@expo/vector-icons';
 import BottomTab from "../components/bottomTab"
-
-//import { ContextoIngresos } from "../src/context/ingresoContext";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window");
@@ -23,40 +23,34 @@ const chartConfig = {
 
 const balance = ({ navigation }) => { 
   const { state} = useContext(AuthContext);
-
   const {state: gastoState, getGastos} = useContext(GastoContext);
-  //const {ingresos} = useContext(ContextoIngresos);
+  const {state: ingresoState, getIngresos} = useContext(IngresoContext);
   
   useEffect(() => {
+    getIngresos(state.user.id);
     getGastos(state.user.id);
+
   }, []);
+
   var gastos= gastoState.gastos;
-  console.log(gastos);
+  var ingresos= ingresoState.ingresos;
+
   var montos = [];
+  var montosIngreso = [];
+
   montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
-  console.log(montos);
-
-  //var montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
-  var montosIngreso = 500;
+  montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
 
 
-    //var sumaGasto = 0;
     const sumaGasto = montos.reduce((a, b) => Number(a) + Number(b),0);
+    const sumaIngreso = montosIngreso.reduce((a, b) => Number(a) + Number(b),0);
 
 
-    console.log(sumaGasto);
-
-/*
-    var sumaIngreso = 0;
-    montosIngreso ? montosIngreso.forEach(function(monto){
-        sumaIngreso += monto;
-    }):null; */
-console.log(gastos);
-     var resta = montosIngreso - sumaGasto; 
-  const data = [
+     var resta = montosIngreso - montos; 
+    const data = [
     {
       name: "Ingresos",
-      population: montosIngreso,
+      population: sumaIngreso,
       color: "#236266",
       legendFontColor: "black",
       legendFontSize: 15
@@ -175,29 +169,6 @@ const styles = StyleSheet.create({
       width: width * 0.9,
       alignSelf: "center"
     },
-
-    texto: {
-        textAlign: "center",
-        marginTop: 20,
-        color: "white",
-        fontSize: 25,
-    },
-
-    icono: {
-        color: "white",
-        fontSize: 35,
-        paddingBottom:35
-    },
-
-    boton: {
-        alignContent:"center",
-        backgroundColor: "#31898F",
-        borderRadius: 40,
-        marginLeft: 290,
-        position: "absolute",
-        top: 500
-    },
-
     view: {
         backgroundColor: "white",
         marginTop: 15,

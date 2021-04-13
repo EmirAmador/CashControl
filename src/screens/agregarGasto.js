@@ -1,28 +1,20 @@
 import React, {  useState ,useContext} from "react";
-import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left, Label} from "native-base";
-import { StyleSheet, Text,Dimensions,Image} from "react-native";
-import { FontAwesome5 } from '@expo/vector-icons';
+import {Container,View} from "native-base";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
-import { MaterialIcons } from '@expo/vector-icons'; 
-import { format } from "date-fns";
+import Agregar from "../components/shared/agregarForm";
 
 
- const agregarGasto  = ({ navigation }) =>{ 
-
-
-        
+ const agregarGasto  = ({ navigation }) =>{         
     const { createGasto } = useContext(GastoContext);
     const { state } = useContext(AuthContext);
     const [monto, setMonto] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [errorDescripcion, setErrorDescripcion] = useState(false);
-    const [enableSave, setEnableSave] = useState(true);
     const [timestamp, setTimestamp] = useState(Date.now());
-
-
 
 
     const handleSaveGasto = () => {
@@ -40,46 +32,19 @@ import { format } from "date-fns";
                          end={{ x: 1, y: 0 }}> 
                         <View >
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
-                            <View style={styles.viewStyle}>
-                            <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
- >
-                                <Input 
-                                value={descripcion}
-                                onChangeText={setDescripcion}
-                                placeholder='Descripción'/>
-                               
-                            </Item>
-                            
-                            <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
-                                <FontAwesome5 name="money-bill-alt" size={24} color="white" />
-                                <Input  placeholder='Monto'
-                                 value={monto}
-                                 onChangeText={setMonto}
-                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
-                                 />
-                                 
-                            </Item>
-                            
-                            <Item>
-                            <MaterialIcons name="date-range" size={24} color="black" />
-                              <Text> {`${format(timestamp, "eee H:m")}`}
-                          </Text>
+                            <Agregar
+                              handleSave ={handleSaveGasto}
+                              descripcion = {descripcion}
+                              setDescripcion = {setDescripcion}
+                              monto = {monto}
+                              setMonto = {setMonto}
+                              errorDescripcion ={errorDescripcion}
+                              timestamp = {timestamp}
+                            />
 
-
-                                    
-                                   
-                            </Item>
-
-                            <Button style={styles.botonCrear} rounded onPress={handleSaveGasto}>
-                              <Text style={styles.textoBotones}>
-                                Crear
-                              </Text>    
-                            </Button>
-                            </View>
                         </View>
     
                 </LinearGradient>
-    
              </Container>
             );                  
         }
@@ -97,30 +62,13 @@ const styles = StyleSheet.create({
       width: width
       
     },
-    inputError: {
-      borderColor: "red",
-    },
+    
     header: {
         backgroundColor: '#3CCCD6',
       },
 
  
-    botonCrear:{
-      width:160,
-      height:60,
-      alignSelf:"center",
-      marginTop:60,
-      backgroundColor:"#FFFFFF",
-      justifyContent:"center",
-      alignContent:"center"
-  },
-  
-textoBotones:{
-  fontWeight:"bold",
-  fontSize:25,
-  justifyContent:"center",
-  textAlign:"center",
-},      
+         
 textoTitulo:{
   marginTop:40,
   color:"#FFFFFF",
@@ -128,9 +76,7 @@ textoTitulo:{
   fontWeight:"bold",
   alignSelf: "center"
 },
-itemStyle:{
-    marginTop:20,
-},
+
 viewStyle:{
     width:350,
     height:500,

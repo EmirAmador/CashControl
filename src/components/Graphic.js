@@ -1,20 +1,19 @@
 import React, {  useContext} from "react";
-import {Container,View,Header,Button, Left} from "native-base";
+import {Container,View,Button} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
 import { ContextoIngresos } from "../src/context/ingresoContext";
 import { MaterialIcons } from '@expo/vector-icons'; 
-import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
 
 // data del grafico
 
 const chartConfig = {
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
+    strokeWidth: 2, 
     barPercentage: 0.5,
-    useShadowColorFromDataset: false // optional
+    useShadowColorFromDataset: false 
   };
 
 const grafico = ({ navigation }) => { 
