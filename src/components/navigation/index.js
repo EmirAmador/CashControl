@@ -45,6 +45,7 @@ const Navigation = () => {
                 <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
                 <Stack.Screen name="forgotPassword" component={forgotPassword}  />
                 <Stack.Screen name="modificarGasto" component={modificarGasto} />
+                
             </Stack.Navigator>
             ) : (
                 <Stack.Navigator>

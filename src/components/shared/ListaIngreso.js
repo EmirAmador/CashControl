@@ -8,13 +8,16 @@ import {
   Dimensions,
 } from "react-native";
 import { Context as IngresoContext } from "../../providers/IngresoContext";
+import { Context as AuthContext } from "../../providers/AuthContext";
+
 import Ingreso from "./ingreso";
 const { width, height } = Dimensions.get("window");
 
-
 const ListaIngreso = ({ navigation, ingresos }) => {
-    const { state, setCurrentIngreso } = useContext(IngresoContext);
-  
+  const { state} = useContext(AuthContext);
+
+    const { state: IngresoState,setCurrentIngreso,deteleIngreso } = useContext(IngresoContext);
+
     const handleSelectIngreso = (ingreso) => {
       setCurrentIngreso(ingreso);
       navigation.navigate("modificarIngreso");
@@ -25,7 +28,6 @@ const ListaIngreso = ({ navigation, ingresos }) => {
         <Text>Aun no tienes ingresos para mostrar...</Text>
       </View>
     );
-        console.log(ingresos);
     return (
       <View style={styles.lista}>
           

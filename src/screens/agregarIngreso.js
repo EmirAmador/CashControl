@@ -5,97 +5,84 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
+import { format } from "date-fns";
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 
 const { width, height } = Dimensions.get("window");
 
  const agregarIngreso = ({ navigation }) =>{ 
 
-    const [fontsLoaded, setFontsLoaded] = useState(false);         
-    const { createIngreso } = useContext(IngresoContext);
-    const { state } = useContext(AuthContext);
-    const [title, setTitle] = useState("");
-    const [timestamp, setTimestamp] = useState(Date.now());
-    const [content, setContent] = useState("");
-          
-          /*useEffect(() => {
-            const loadFontsAsync = async () => {
-              await Font.loadAsync({
-                Roboto_medium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf"),
-              }).then(() => {
-                setFontsLoaded(true);
-              });
-            };
-        
-            loadFontsAsync();
-          }, []);*/
-         
-          // Ejecutar el efecto cuando el valor de la nota cambie
-           /* useEffect(() => {
-              if (descripcion) setEnableSave(false);
-              else setEnableSave(true);
-            }, [descripcion]);*/
+  const { createIngreso } = useContext(IngresoContext);
+  const { state } = useContext(AuthContext);
+  const [monto, setMonto] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [errorDescripcion, setErrorDescripcion] = useState(false);
+  const [enableSave, setEnableSave] = useState(true);
+  const [timestamp, setTimestamp] = useState(Date.now());
 
-          /*const handlerNewIngreso = async () => {
 
-            if (descripcion , monto) {
-              await agregarIngreso(descripcion,monto,refreshIngresos);
-              navigation.goBack();
-            }
-            
-            else {
-              setErrorDescripcion(true);
-            }         
-          };*/
-/*
-          if (!fontsLoaded)
+
+
+  const handleSaveIngreso = () => {
+      createIngreso( descripcion, monto,timestamp, state.user.id);
+      navigation.goBack();
+  };
+
           return (
-            <Content contentContainerStyle={styles.content}>
-              <Spinner color="blue" />
-            </Content>
-          );*/
-
-            return (
-                <Container style={styles.Fondo}  >
+              <Container style={styles.Fondo}  >
                   
-                     <LinearGradient 
-                        colors={['#480048','#C04848']} 
-                        style={styles.LinearGradient}
-                        start={{ x: 0, y: 1 }}
-                        end={{ x: 1, y: 0 }}> 
-                        <View>
-                        
-                            <Text style={styles.textoTitulo}> Agregar Ingresos</Text> 
-                            <View style={styles.viewStyle}>
-                            <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}>
-                                <Input 
-                                value={descripcion}
-                                onChangeText={setDescripcion}
-                                placeholder='Descripción'/>
+                   <LinearGradient 
+                       colors={['#480048','#C04848']} 
+                       style={styles.LinearGradient}
+                       start={{ x: 0, y: 1 }}
+                       end={{ x: 1, y: 0 }}> 
+                      <View >
+                          <Text style={styles.textoTitulo}> Agregar Ingresos </Text> 
+                          <View style={styles.viewStyle}>
+                          <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
+>
+                              <Input 
+                              value={descripcion}
+                              onChangeText={setDescripcion}
+                              placeholder='Descripción'/>
+                             
+                          </Item>
+                          
+                          <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
+                              <FontAwesome5 name="money-bill-alt" size={24} color="white" />
+                              <Input  placeholder='Monto'
+                               value={monto}
+                               onChangeText={setMonto}
+                               placeHolderTextStyle={{ color: "#d3d3d3" }}
+                               />
                                
-                            </Item>
-                            
-                            <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
-                                <FontAwesome5 name="money-bill-alt" size={24} color="white" />
-                                <Input  placeholder='Monto'
-                                 value={monto}
-                                 onChangeText={setMonto}/>
-                            </Item>
-                            
-                            <Button style={styles.botonCrear} rounded onPress={handlerNewIngreso}>
-                              <Text style={styles.textoBotones}>
-                                Guardar
-                              </Text>    
-                            </Button>
-                            </View>
-                        </View>
+                          </Item>
+                          
+                          <Item>
+                          <MaterialIcons name="date-range" size={24} color="black" />
+                            <Text> {`${format(timestamp, "eee H:m")}`}
+                        </Text>
+
+
+                                  
+                                 
+                          </Item>
+
+                          <Button style={styles.botonCrear} rounded onPress={handleSaveIngreso}>
+                            <Text style={styles.textoBotones}>
+                              Crear
+                            </Text>    
+                          </Button>
+                          </View>
+                      </View>
+  
+              </LinearGradient>
+  
+           </Container>
+          );                  
+      }
     
-                </LinearGradient>
-    
-             </Container>
-            );                  
-}
-      
 
 
 const styles = StyleSheet.create({

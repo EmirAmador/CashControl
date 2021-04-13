@@ -5,53 +5,48 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
 import { MaterialIcons } from '@expo/vector-icons';
+import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as IngresoContext } from "../providers/IngresoContext";
+import Toast from "react-native-toast-message";
+import ListaIngreso from "../components/shared/ListaIngreso";
+state
+const listadoIngresos = ({ navigation }) => {
 
-const listadoIngresos = ({ navigation }) => { 
-    /*const {ingresos} = useContext(ContextoIngresos);
-    var montos = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
-    
-    var suma = 0;
-    montos ? montos.forEach(function(monto){
-        suma += monto;
-    }):null; */
+    const { state} = useContext(AuthContext);
+    const {state: ingresoState, getIngresos , clearMessage} = useContext(IngresoContext);
+
+    useEffect(() => {
+        getIngresos(state.user.id);
+      }, [state]);
+
+      useEffect(() => {
+        if (ingresoState.errorMessage) {
+          Toast.show({
+            text2: ingresoState.errorMessage,
+          });
+          clearMessage();
+        }
+      }, [ingresoState.errorMessage]);
+
        return (
-            <Container style={styles.fondo}>
+             <>
+                <Toast ref={(ref) => Toast.setRef(ref)} />
+
                 <LinearGradient 
-                    colors={['#480048','#C04848']} 
-                    style={styles.LinearGradient}
-                    start={{ x: 0, y: 1 }}
-                    end={{ x: 1, y: 0 }}> 
+                   colors={['#480048','#C04848']} 
+                   style={styles.LinearGradient}
+                   start={{ x: 0, y: 1 }}
+                   end={{ x: 1, y: 0 }}> 
                    <View>
-                        
                         
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
-                       
-                       <Card style={styles.lista}>
-                           <ScrollView>
-                              <List>
-                            {/* {ingresos ? 
-                                    ingresos.map((ingreso) => (
-                                        <ListItem key={ingreso.id.toString()} 
-                                         onPress={() => {      
-                                            navigation.navigate("modificarIngreso", { id: ingreso.id });
-                                        }}>
-                                            <Left><Text>{ingreso.descripcion}</Text></Left>
-                                            <Body><Text>L. {ingreso.monto} </Text></Body> 
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right>   
-                                        </ListItem>
-                                    ))
-                                    : null}*/}
-                              
-                              </List>
-     
-                            </ScrollView>
-                            
-                        </Card>
+                        <ListaIngreso navigation={navigation} ingresos={ingresoState.ingresos} />
+
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#C70039" }}
+                            style={{ backgroundColor: "#ff0023" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarIngreso")
@@ -61,8 +56,8 @@ const listadoIngresos = ({ navigation }) => {
                         </Fab>
                     </View>
                 </LinearGradient>
-            </Container>
-        );                  
+            </>
+        );                 
 }
 
 const styles = StyleSheet.create({

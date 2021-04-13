@@ -1,5 +1,5 @@
 import React, { useEffect, useState ,useContext} from "react";
-import {View,Icon,Fab} from "native-base";
+import {View,Icon,Fab, Header, Left, Right, Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
@@ -7,7 +7,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Toast from "react-native-toast-message";
 import ListaGasto from "../components/shared/ListaGasto"
-
+import BottomTab from "../components/bottomTab"
 
 const listadoGastos = ({ navigation }) => { 
     const { state} = useContext(AuthContext);
@@ -15,7 +15,7 @@ const listadoGastos = ({ navigation }) => {
 
     useEffect(() => {
         getGastos(state.user.id);
-      }, []);
+      }, [state]);
 
       useEffect(() => {
         if (gastoState.errorMessage) {
@@ -26,20 +26,18 @@ const listadoGastos = ({ navigation }) => {
         }
       }, [gastoState.errorMessage]);
     
-    
-
        return (
-
             <>
                 <Toast ref={(ref) => Toast.setRef(ref)} />
-
+                
                 <LinearGradient 
                    colors={['#480048','#C04848']} 
                    style={styles.LinearGradient}
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
+                   <View style={styles.view}></View>
                    <View>
-                        
+                    
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
                         <ListaGasto navigation={navigation} gastos={gastoState.gastos} />
@@ -55,8 +53,12 @@ const listadoGastos = ({ navigation }) => {
                             >
                             <Icon name="plus" type="FontAwesome" />
                         </Fab>
+                        
+                        <BottomTab></BottomTab>
                     </View>
+                    
                 </LinearGradient>
+                
             </>
         );                  
 }
@@ -68,20 +70,26 @@ const styles = StyleSheet.create({
       height: height,
     },
   
-    linearGradient: {
+    LinearGradient: {
       height: height,
       width: width
       
     },
+    textoH: {
+        fontSize: 30,
+        marginRight: 0,
+        color: 'black',
+        alignSelf:"center"
+    },
 
     header: {
-        backgroundColor: '#3CCCD6',
+        backgroundColor: '#ffff',
     },
 
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 80,
+        marginTop: 5,
         color: '#FFFFFF',
     },
 
@@ -126,6 +134,10 @@ const styles = StyleSheet.create({
         height: 50,
         marginTop: 40,
         marginLeft:19,
+    },
+
+    view: {
+        height: 97
     },
 });
 
