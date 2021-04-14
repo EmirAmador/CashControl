@@ -100,11 +100,14 @@ const styles = StyleSheet.create({
       
     },
     h2:{
-      fontSize: 20,
+      fontSize: 22,
       textAlign:"left",
       marginTop: 30,
-      marginLeft:20,
+      marginLeft:25,
       color: '#FFFFFF',
+      fontWeight:"bold",
+      fontFamily: "Arial, Helvetica, sans-serif",
+ 
   },
   card:{
     marginTop:40,
