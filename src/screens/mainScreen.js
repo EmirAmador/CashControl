@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import {Container,View,Button} from "native-base";
+import {Container,View,Button,Card} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -60,11 +60,13 @@ const mainScreen = ({ navigation }) => {
                       <TouchableOpacity style={styles.logout} onPress={() => signout()}>
                         <MaterialIcons name="logout" size={30} color="black" />
                       </TouchableOpacity>
-
                         <Text style={styles.textoTitulo}>¡Bienvenido {state.user.fullname} ! </Text>
-                        <Text>Ingresos: {sumaIngreso} </Text> 
-                        <Text>Gastos: {sumaGasto} </Text> 
-                        <Text>Estado:{calculos()} </Text> 
+                        <Card style={styles.card}>
+
+                        <Text style={styles.h2}>Ingresos: L. {sumaIngreso}  </Text> 
+                        <Text style={styles.h2}>Gastos: L. {sumaGasto} </Text> 
+                        <Text style={styles.h2}>Estado: {calculos()} </Text> 
+                        </Card>
 
                         {/*<Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
@@ -97,7 +99,27 @@ const styles = StyleSheet.create({
       width: width
       
     },
-
+    h2:{
+      fontSize: 20,
+      textAlign:"left",
+      marginTop: 30,
+      marginLeft:20,
+      color: '#FFFFFF',
+  },
+  card:{
+    marginTop:40,
+    width:width * 0.8,
+    height:height *0.4,
+    alignSelf:"center",
+    backgroundColor:"transparent",
+    shadowRadius: 9,
+    shadowOpacity: 0.2,
+    shadowColor: "#ffffff",
+    shadowOffset: { width: 7, height: 7 },
+    borderColor: "blue",
+    borderRadius:5,
+    
+  },
       logout:{
         width:50,
         marginTop:30,
