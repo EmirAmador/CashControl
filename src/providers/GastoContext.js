@@ -30,7 +30,16 @@ const gastoReducer = (state, action) => {
         }),
       };
       case "deleteGasto":
-      return { ...state, gastos: action.payload };
+      return {...state,
+        gastos: state.gastos.map((gasto) => {
+          if (gasto.id === action.payload.gasto.id) {
+            return {
+              ...gasto,
+            };
+          }
+
+          return gasto;
+        }), };
     default:
       return state;
   }

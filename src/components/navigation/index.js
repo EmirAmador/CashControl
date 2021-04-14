@@ -14,7 +14,6 @@ import forgotPassword from '../../screens/forgotPassword';
 import login from "../../screens/login";
 import modificarGasto from "../../screens/modificarGasto";
 import modificarIngreso from "../../screens/modificarIngreso";
-import eliminar from "../../screens/eliminar";
 
 
 
@@ -50,7 +49,6 @@ const Navigation = () => {
                 <Stack.Screen name="forgotPassword" component={forgotPassword}  />
                 <Stack.Screen name="modificarGasto" component={modificarGasto} />
                 <Stack.Screen name="modificarIngreso" component={modificarIngreso} />
-                <Stack.Screen name="eliminar" component={eliminar} />
 
 
                 

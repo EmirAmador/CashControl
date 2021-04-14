@@ -30,7 +30,16 @@ const ingresoReducer = (state, action) => {
         }),
       };
       case "deleteIngreso":
-      return { ...state, ingresos: action.payload };
+      return {...state,
+        ingresos: state.ingresos.map((ingreso) => {
+          if (ingreso.id === action.payload.ingreso.id) {
+            return {
+              ...ingreso,
+            };
+          }
+
+          return ingreso;
+        }), };
     default:
       return state;
   }

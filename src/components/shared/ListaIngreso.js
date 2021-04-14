@@ -16,11 +16,14 @@ const { width, height } = Dimensions.get("window");
 const ListaIngreso = ({ navigation, ingresos }) => {
   const { state} = useContext(AuthContext);
 
-    const { state: IngresoState,setCurrentIngreso,deleteIngreso } = useContext(IngresoContext);
-
-    const handleSelectDelete = (ingreso) => {
-      setCurrentIngreso(ingreso);
-      navigation.navigate("eliminar");
+    const { state: ingresoState,setCurrentIngreso,deleteIngreso } = useContext(IngresoContext);
+    useEffect(() => {
+      ingresoState.currentIngreso
+    }, [ingresoState.currentIngreso]);
+    
+    const handleDeleteIngreso = (ingreso) => {
+      deleteIngreso(ingreso.id);
+      navigation.navigate("listadoIngresos");
     };
 
     const handleSelectIngreso = (ingreso) => {
@@ -33,6 +36,22 @@ const ListaIngreso = ({ navigation, ingresos }) => {
         <Text>Aun no tienes ingresos para mostrar...</Text>
       </View>
     );
+
+    const alertDelete = (ingreso) => {
+      setCurrentIngreso(ingreso);
+      Alert.alert(
+        "Eliminar Ingreso",
+        "Estas seguro de eliminar este ingreso?",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => handleDeleteIngreso(ingreso)}
+        ]
+      );
+    }
     return (
       <View style={styles.lista}>
           
@@ -46,7 +65,7 @@ const ListaIngreso = ({ navigation, ingresos }) => {
                   handleSelectIngreso(item);
                 }}
                 onLongPress={() => {
-                  handleSelectDelete(item);
+                  alertDelete(item);
                 }}
               >
                   
