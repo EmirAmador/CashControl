@@ -6,7 +6,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
 import { format } from "date-fns";
 import Agregar from "../components/shared/agregarForm"
-import BottomTab from "../components/bottomTab"
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -45,7 +45,7 @@ const { width, height } = Dimensions.get("window");
                               timestamp = {timestamp}
                             />
                       </View>
-                <BottomTab></BottomTab>
+                
               </LinearGradient>
            </Container>
           );                  

@@ -7,7 +7,6 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Toast from "react-native-toast-message";
 import ListaGasto from "../components/shared/ListaGasto"
-import BottomTab from "../components/bottomTab"
 
 const listadoGastos = ({ navigation }) => { 
     const { state} = useContext(AuthContext);
@@ -54,7 +53,6 @@ const listadoGastos = ({ navigation }) => {
                             <Icon name="plus" type="FontAwesome" />
                         </Fab> 
                     </View>
-                    <BottomTab></BottomTab>
                 </LinearGradient>
             </>
         );                  
@@ -72,16 +70,6 @@ const styles = StyleSheet.create({
       width: width
       
     },
-    textoH: {
-        fontSize: 30,
-        marginRight: 0,
-        color: 'black',
-        alignSelf:"center"
-    },
-
-    header: {
-        backgroundColor: '#ffff',
-    },
 
     h1:{
         fontSize: 33,
@@ -89,6 +77,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
         color: '#FFFFFF',
+        fontWeight:"bold",
     },
 
     divisor:{
@@ -128,15 +117,8 @@ const styles = StyleSheet.create({
         top: 500
     },
 
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 40,
-        marginLeft:19,
-    },
-
     view: {
-        height: 87
+        height: 60
     },
 });
 

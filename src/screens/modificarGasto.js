@@ -7,7 +7,7 @@ import * as Font from "expo-font";
 import { Context as GastoContext } from "../providers/GastoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
-import BottomTab from "../components/bottomTab"
+
 
  const modificarGasto  = ({navigation }) =>{ 
 
@@ -62,7 +62,7 @@ import BottomTab from "../components/bottomTab"
                              errorDescripcion={errorDescripcion} />
                             
                         </View>
-                    <BottomTab></BottomTab>
+                    
                 </LinearGradient>
               
              </Container>

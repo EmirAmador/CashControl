@@ -61,6 +61,7 @@ const SigninForm = () => {
         placeholder="Contraseña"
         leftIcon={<Icon name="lock" />}
         value={password}
+        secureTextEntry
         onChangeText={setPassword}
         onBlur={() => {
           handleVerify("password");

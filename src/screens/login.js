@@ -74,10 +74,9 @@ const styles = StyleSheet.create({
             alignSelf: "center",
             marginTop:-90,
             paddingTop:50,
-            //borderColor: "#0000000",
             shadowRadius: 9,
             shadowOpacity: 0.2,
-            shadowColor: "#000000",
+            shadowColor: "#7d0a29",
             shadowOffset: { width: 7, height: 7 }
         },
       viewHeather:{
@@ -99,8 +98,8 @@ const styles = StyleSheet.create({
         marginRight:30,
       },
       user:{
-        width: 150,
-        height: 150,
+        width: 165,
+        height: 165,
         alignSelf: "center",
         
       }

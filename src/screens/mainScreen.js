@@ -3,9 +3,8 @@ import {Container,View,Button} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
 import {Context as AuthContext} from "../providers/AuthContext";
-//import BottomTab from "../components/bottomTab"
 
 const { width, height } = Dimensions.get("window");
 
@@ -19,6 +18,7 @@ const mainScreen = ({ navigation }) => {
                      style={styles.LinearGradient}
                      start={{ x: 0, y: 1 }}
                      end={{ x: 1, y: 0 }}> 
+                     <View style={styles.view}></View>
                     <View  >
                       <TouchableOpacity style={styles.logout} onPress={() => signout()}>
                         <MaterialIcons name="logout" size={30} color="black" />
@@ -38,9 +38,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>
                         </Button> 
-                        
                     </View>
-                    
                   </LinearGradient>
                   
               </Container>
@@ -58,9 +56,7 @@ const styles = StyleSheet.create({
       width: width
       
     },
-    header: {
-        backgroundColor: '#3CCCD6',
-      },
+
       logout:{
         width:50,
         marginTop:30,
@@ -91,17 +87,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
 
 },
-botonMovimientos:{
-  width:190,
-  height:60,
-  backgroundColor:"#ffffff",
-  marginTop:50,
-  alignSelf:"center",
-  borderRadius:26,
-  alignContent:"center",
-  justifyContent:"center",
 
-}  ,
 botonBalance:{
   width:190,
   height:60,
@@ -120,12 +106,15 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:20,
+  marginTop:50,
   color:"#FFFFFF",
   fontSize:40,
   fontWeight:"bold",
   marginLeft: 35,
-  
+},
+
+view: {
+  height: 20
 },
 
 });

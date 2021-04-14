@@ -118,12 +118,11 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:20,
+  marginTop:150,
   color:"#FFFFFF",
   fontSize:40,
   fontWeight:"bold",
-  marginLeft: 35,
-  
+  alignSelf: "center"
 },
 
 });

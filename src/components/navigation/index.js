@@ -34,7 +34,7 @@ const Navigation = () => {
             
             ) : (
               <Stack.Navigator>
-                    <Stack.Screen  name="login" component={login} />
+                    <Stack.Screen name="login" component={login} />
                     <Stack.Screen name="registro" component={registro}  />
                 </Stack.Navigator>
             )}

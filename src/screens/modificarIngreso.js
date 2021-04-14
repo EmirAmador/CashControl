@@ -6,7 +6,6 @@ const { width, height } = Dimensions.get("window");
 import { Context as IngresoContext } from "../providers/IngresoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
-import BottomTab from "../components/bottomTab"
 
  const modificarIngreso = ({navigation}) =>{ 
 
@@ -57,7 +56,7 @@ import BottomTab from "../components/bottomTab"
                              errorDescripcion={errorDescripcion} />
                             
                         </View>
-                  <BottomTab></BottomTab>
+          
                 </LinearGradient>
     
              </Container>

@@ -6,7 +6,6 @@ const { width, height } = Dimensions.get("window");
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Agregar from "../components/shared/agregarForm";
-import BottomTab from "../components/bottomTab"
 
  const agregarGasto  = ({ navigation }) =>{         
     const { createGasto } = useContext(GastoContext);
@@ -44,7 +43,7 @@ import BottomTab from "../components/bottomTab"
                             />
 
                         </View>
-                  <BottomTab></BottomTab>
+                  
                 </LinearGradient>
              </Container>
             );                  
