@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get("window");
 import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as GastoContext } from "../providers/GastoContext";
 import Agregar from "../components/shared/agregarForm";
-
+import BottomTab from "../components/bottomTab"
 
  const agregarGasto  = ({ navigation }) =>{         
     const { createGasto } = useContext(GastoContext);
@@ -30,6 +30,7 @@ import Agregar from "../components/shared/agregarForm";
                          style={styles.LinearGradient}
                          start={{ x: 0, y: 1 }}
                          end={{ x: 1, y: 0 }}> 
+                        <View style={styles.view}></View>
                         <View >
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <Agregar
@@ -43,7 +44,7 @@ import Agregar from "../components/shared/agregarForm";
                             />
 
                         </View>
-    
+                  <BottomTab></BottomTab>
                 </LinearGradient>
              </Container>
             );                  
@@ -66,33 +67,21 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#3CCCD6',
       },
-
- 
-         
+  
 textoTitulo:{
-  marginTop:40,
+  marginTop:100,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
   alignSelf: "center"
 },
 
-viewStyle:{
-    width:350,
-    height:500,
-    alignSelf:"center"
+view: {
+  height: 64
 },
-botonCategorias:{
-    backgroundColor:"transparent",
-    marginTop:30,
-    width:"auto",
-},
-logoImage: {
-  width: width * 0.1,
-  height: 50,
-  marginTop: 50,
-  marginLeft: 19,
-},
+
+
+
  });
 
 export default agregarGasto;

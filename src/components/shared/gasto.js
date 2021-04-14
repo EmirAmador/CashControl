@@ -3,9 +3,6 @@ import { Dimensions, StyleSheet } from "react-native";
 import { Card,Text, List, View} from "native-base";
 const { width, height } = Dimensions.get("window");
 
-
-
-
 const Gasto = ({ descripcion, monto }) => {
   return (
     
@@ -23,7 +20,6 @@ const styles = StyleSheet.create({
     width: width * 0.90,
     height: height * 0.07,
     margin: 5,
-    
   },
 
   lista:{

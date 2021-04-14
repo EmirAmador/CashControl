@@ -45,20 +45,17 @@ const listadoGastos = ({ navigation }) => {
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#ff0023" }}
+                            style={{ backgroundColor: "#b5124e" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarGasto")
                             }}
                             >
                             <Icon name="plus" type="FontAwesome" />
-                        </Fab>
-                        
-                        <BottomTab></BottomTab>
+                        </Fab> 
                     </View>
-                    
+                    <BottomTab></BottomTab>
                 </LinearGradient>
-                
             </>
         );                  
 }
@@ -90,6 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 33,
         textAlign:"center",
         marginTop: 5,
+        marginBottom: 5,
         color: '#FFFFFF',
     },
 
@@ -97,7 +95,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FFFFFF',
         borderBottomWidth: 2,
         width: width * 0.9,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom: 5 
     },
 
     texto: {
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     },
 
     view: {
-        height: 97
+        height: 87
     },
 });
 

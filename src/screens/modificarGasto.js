@@ -7,11 +7,9 @@ import * as Font from "expo-font";
 import { Context as GastoContext } from "../providers/GastoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
-
-
+import BottomTab from "../components/bottomTab"
 
  const modificarGasto  = ({navigation }) =>{ 
-
 
         const { state: gastoState, updateGasto } = useContext(GastoContext);
         const { state } = useContext(AuthContext);
@@ -50,6 +48,7 @@ import Modificar from "../components/shared/modificar";
                          style={styles.LinearGradient}
                          start={{ x: 0, y: 1 }}
                          end={{ x: 1, y: 0 }}>
+                        <View style={styles.view}></View>
                         <View >
 
                             <Text style={styles.textoTitulo}> Modificar Gastos </Text> 
@@ -63,9 +62,9 @@ import Modificar from "../components/shared/modificar";
                              errorDescripcion={errorDescripcion} />
                             
                         </View>
-    
+                    <BottomTab></BottomTab>
                 </LinearGradient>
-    
+              
              </Container>
             );                  
         }
@@ -90,22 +89,17 @@ const styles = StyleSheet.create({
 
        
 textoTitulo:{
-  marginTop:20,
+  marginTop:100,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
-  marginLeft:45,
   alignSelf: "center"
 },
 
-
-
-logoImage: {
-  width: width * 0.1,
-  height: 50,
-  marginTop: 10,
-  marginLeft: 19,
+view: {
+  height: 64
 },
+
  });
 
 export default modificarGasto;

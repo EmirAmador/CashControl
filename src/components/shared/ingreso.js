@@ -1,30 +1,48 @@
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
-import { Card,Text,CardItem } from "native-base";
+import { Card,Text, List, View} from "native-base";
 
 const { width, height } = Dimensions.get("screen");
 
 const Ingreso = ({ descripcion, monto }) => {
   return (
-    
-    <Card style={styles.container}>
+    <List style={styles.lista}>
         <Text>{descripcion}</Text>
         <Text>{monto}</Text>
-    </Card>
+        <View style={styles.divisor}/>
+    </List>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: width * 0.45,
-    height: height * 0.2,
+    width: width * 0.90,
+    height: height * 0.07,
     margin: 5,
-    
   },
+
+  lista:{
+    backgroundColor:"white",
+    borderRadius: 5,
+    height: height * 0.11,
+    width: width * 0.9,
+    alignSelf:"center",
+    padding: 15,  
+  },
+  
+  divisor:{
+    borderBottomColor: '#8a071f',
+    borderBottomWidth: 2,
+    width: width * 0.85,
+    alignSelf: "center",
+    marginTop: 3
+  },
+
   content: {
     flex: 1,
   },
+
   actions: {
     justifyContent: "flex-end",
   },

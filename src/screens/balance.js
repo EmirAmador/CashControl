@@ -138,23 +138,12 @@ const styles = StyleSheet.create({
       
     },
 
-    header: {
-        backgroundColor: '#3CCCD6',
-    },
-
     h1:{
       fontSize: 33,
       textAlign:"center",
-      marginTop: 50,
+      marginTop: 100,
       color: '#FFFFFF',
   },
-
-    h2:{
-      fontSize: 33,
-      textAlign:"center",
-      marginTop: 12,
-      color: '#FFFFFF',
-    },
 
     advertencia:{
       fontSize: 30,
@@ -203,13 +192,6 @@ const styles = StyleSheet.create({
         fontSize:20,
         justifyContent:"center",
         textAlign:"center",
-    },
-
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 10,
-        marginLeft: 19,
     },
 
     

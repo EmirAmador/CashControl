@@ -6,6 +6,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
 import { format } from "date-fns";
 import Agregar from "../components/shared/agregarForm"
+import BottomTab from "../components/bottomTab"
 
 const { width, height } = Dimensions.get("window");
 
@@ -17,9 +18,6 @@ const { width, height } = Dimensions.get("window");
   const [descripcion, setDescripcion] = useState("");
   const [errorDescripcion, setErrorDescripcion] = useState(false);
   const [timestamp, setTimestamp] = useState(Date.now());
-
-
-
 
   const handleSaveIngreso = () => {
       createIngreso( descripcion, monto,timestamp, state.user.id);
@@ -34,6 +32,7 @@ const { width, height } = Dimensions.get("window");
                        style={styles.LinearGradient}
                        start={{ x: 0, y: 1 }}
                        end={{ x: 1, y: 0 }}> 
+                      <View style={styles.view}></View>
                       <View >
                           <Text style={styles.textoTitulo}> Agregar Ingresos </Text> 
                           <Agregar
@@ -46,14 +45,11 @@ const { width, height } = Dimensions.get("window");
                               timestamp = {timestamp}
                             />
                       </View>
-  
+                <BottomTab></BottomTab>
               </LinearGradient>
-  
            </Container>
           );                  
       }
-    
-
 
 const styles = StyleSheet.create({
   Fondo: {
@@ -71,32 +67,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#3CCCD6',
       },
 
- 
-         
 textoTitulo:{
-  marginTop:40,
+  marginTop:100,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
   alignSelf: "center"
 },
 
-viewStyle:{
-    width:350,
-    height:500,
-    alignSelf:"center"
+view: {
+  height: 64
 },
-botonCategorias:{
-    backgroundColor:"transparent",
-    marginTop:30,
-    width:"auto",
-},
-logoImage: {
-  width: width * 0.1,
-  height: 50,
-  marginTop: 50,
-  marginLeft: 19,
-},
+
  });
 
 export default agregarIngreso;

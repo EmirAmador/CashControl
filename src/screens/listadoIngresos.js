@@ -7,6 +7,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
 import Toast from "react-native-toast-message";
 import ListaIngreso from "../components/shared/ListaIngreso";
+import BottomTab from "../components/bottomTab"
 
 const listadoIngresos = ({ navigation }) => {
 
@@ -44,7 +45,7 @@ const listadoIngresos = ({ navigation }) => {
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#ff0023" }}
+                            style={{ backgroundColor: "#b5124e" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarIngreso")
@@ -53,6 +54,7 @@ const listadoIngresos = ({ navigation }) => {
                             <Icon name="plus" type="FontAwesome" />
                         </Fab>
                     </View>
+                    <BottomTab></BottomTab>
                 </LinearGradient>
             </>
         );                 
@@ -78,15 +80,17 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 100,
+        marginTop: 92,
+        marginBottom: 5,
         color: '#ffffff',
     },
 
     divisor:{
-        borderBottomColor: '#000000',
+        borderBottomColor: '#fff',
         borderBottomWidth: 2,
         width: width * 0.9,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom: 6 
     },
 
     texto: {
