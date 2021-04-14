@@ -3,15 +3,11 @@ import {Container,View,Header,Item,Input,Icon, Left,Button,Content,Spinner} from
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
-import * as Font from "expo-font";
 import { Context as IngresoContext } from "../providers/IngresoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
 
-
-
  const modificarIngreso = ({navigation}) =>{ 
-
 
         const { state: ingresoState, updateIngreso } = useContext(IngresoContext);
         const { state } = useContext(AuthContext);
@@ -20,8 +16,6 @@ import Modificar from "../components/shared/modificar";
         const [timestamp, setTimestamp] = useState("");
 
         const [errorDescripcion, setErrorDescripcion] = useState(false);
-
-
           useEffect(() => {
             if (ingresoState.currentIngreso.id) {
               setDescripcion(ingresoState.currentIngreso.descripcion);
@@ -39,17 +33,16 @@ import Modificar from "../components/shared/modificar";
             );
             navigation.goBack();
           };
-
           
 //console.log(gastoState.currentGasto.id);
             return (
                 <Container style={styles.Fondo}  >
-                  
                      <LinearGradient 
                          colors={['#480048','#C04848']} 
                          style={styles.LinearGradient}
                          start={{ x: 0, y: 1 }}
                          end={{ x: 1, y: 0 }}>
+                        <View style={styles.view}></View>
                         <View >
 
                             <Text style={styles.textoTitulo}> Modificar Ingresos </Text> 
@@ -63,7 +56,7 @@ import Modificar from "../components/shared/modificar";
                              errorDescripcion={errorDescripcion} />
                             
                         </View>
-    
+          
                 </LinearGradient>
     
              </Container>
@@ -87,25 +80,19 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#3CCCD6',
       },
-
        
-textoTitulo:{
-  marginTop:20,
-  color:"#FFFFFF",
-  fontSize:30,
-  fontWeight:"bold",
-  marginLeft:45,
-  alignSelf: "center"
-},
+  textoTitulo:{
+    marginTop: 100,
+    color:"#FFFFFF",
+    fontSize:30,
+    fontWeight:"bold",
+    alignSelf: "center"
+  },
+  
+  view: {
+    height: 64
+  },
 
-
-
-logoImage: {
-  width: width * 0.1,
-  height: 50,
-  marginTop: 10,
-  marginLeft: 19,
-},
  });
 
 export default modificarIngreso;

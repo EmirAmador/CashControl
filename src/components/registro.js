@@ -81,7 +81,7 @@ const FormRegistro = ({ navigation }) => {
     <View>
       {error ? <Alert type="error" title={error} /> : null}
       <Input
-        placeholder="Full name"
+        placeholder="Nombre"
         leftIcon={<Icon name="user" />}
         value={fullname}
         onChangeText={setFullname}
@@ -93,7 +93,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Email"
+        placeholder="Correo"
         leftIcon={<Icon name="envelope" />}
         value={email}
         onChangeText={setEmail}
@@ -106,7 +106,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Password"
+        placeholder="Contraseña"
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
@@ -122,7 +122,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Confirm password"
+        placeholder="Confirmar Contraseña"
         leftIcon={<Icon name="lock" />}
         value={confirmPassword}
         onChangeText={setConfirmPassword}

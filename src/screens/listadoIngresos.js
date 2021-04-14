@@ -7,6 +7,7 @@ import {Context as AuthContext} from "../providers/AuthContext"
 import {Context as IngresoContext } from "../providers/IngresoContext";
 import Toast from "react-native-toast-message";
 import ListaIngreso from "../components/shared/ListaIngreso";
+import agregarIngreso from './agregarIngreso';
 
 const listadoIngresos = ({ navigation }) => {
 
@@ -32,9 +33,10 @@ const listadoIngresos = ({ navigation }) => {
 
                 <LinearGradient 
                    colors={['#480048','#C04848']} 
-                   style={styles.LinearGradient}
+                   style={styles.linearGradient}
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
+                   <View style={styles.view}></View>
                    <View>
                         
                        <Text style={styles.h1}>Ingresos</Text>
@@ -44,15 +46,17 @@ const listadoIngresos = ({ navigation }) => {
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#ff0023" }}
+                            style={{ backgroundColor: "#b5124e" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarIngreso")
                             }}
+                            
                             >
                             <Icon name="plus" type="FontAwesome" />
                         </Fab>
                     </View>
+                    
                 </LinearGradient>
             </>
         );                 
@@ -70,23 +74,21 @@ const styles = StyleSheet.create({
       width: width
       
     },
-
-    header: {
-        backgroundColor: '#3CCCD6',
-    },
-
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 100,
+        marginTop: 5,
+        marginBottom: 5,
         color: '#ffffff',
+        fontWeight:"bold",
     },
 
     divisor:{
-        borderBottomColor: '#000000',
+        borderBottomColor: '#fff',
         borderBottomWidth: 2,
         width: width * 0.9,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom: 6 
     },
 
     texto: {
@@ -118,11 +120,8 @@ const styles = StyleSheet.create({
         top: 500
     },
 
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 40,
-        marginLeft:19,
+    view: {
+        height: 60
     },
 });
 

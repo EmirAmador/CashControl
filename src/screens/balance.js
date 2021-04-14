@@ -5,9 +5,7 @@ import { PieChart } from "react-native-chart-kit";
 import {Context as GastoContext } from "../providers/GastoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import {Context as IngresoContext} from "../providers/IngresoContext"
-
 import { MaterialIcons } from '@expo/vector-icons';
-import BottomTab from "../components/bottomTab"
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window");
@@ -121,7 +119,7 @@ const balance = ({ navigation }) => {
                     }
                  
                 </LinearGradient>
-                <BottomTab></BottomTab>
+                
             </Container>
         );                  
 }
@@ -133,28 +131,18 @@ const styles = StyleSheet.create({
     },
   
     LinearGradient: {
-      height: height * 0.9,
+      height: height,
       width: width
       
-    },
-
-    header: {
-        backgroundColor: '#3CCCD6',
     },
 
     h1:{
       fontSize: 33,
       textAlign:"center",
-      marginTop: 50,
+      marginTop: 100,
       color: '#FFFFFF',
+      fontWeight:"bold",
   },
-
-    h2:{
-      fontSize: 33,
-      textAlign:"center",
-      marginTop: 12,
-      color: '#FFFFFF',
-    },
 
     advertencia:{
       fontSize: 30,
@@ -203,13 +191,6 @@ const styles = StyleSheet.create({
         fontSize:20,
         justifyContent:"center",
         textAlign:"center",
-    },
-
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 10,
-        marginLeft: 19,
     },
 
     
