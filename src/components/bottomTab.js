@@ -5,12 +5,14 @@ import mainScreen from "../screens/mainScreen"
 import listadoGastos from "../screens/listadoGastos"
 import listadoIngresos from "../screens/listadoIngresos"
 import balance from "../screens/balance"
+import {IngresoNavigator, GastoNavigator} from "./navigation/StackNavigator"
 
 const Tab = createBottomTabNavigator();
 
 const BottomTab = ({navigation}) => {
   return (
     <Tab.Navigator
+      initialRouteName="mainScreen"
       tabBarOptions={{
         activeTintColor: '#e91e63',
       }}
@@ -28,24 +30,24 @@ const BottomTab = ({navigation}) => {
       />
       <Tab.Screen
         name="listadoGastos"
-        component={listadoGastos}
+        component={GastoNavigator}
         initialParams = {{navigation : navigation}} 
         options={{
           tabBarLabel: 'Gastos',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
+            <MaterialCommunityIcons name="currency-usd-off" color={color} size={size} />
           ),
           //tabBarBadge: 3,
         }}
       />
       <Tab.Screen
         name="listadoIngresos"
-        component={listadoIngresos}
+        component={IngresoNavigator}
         initialParams = {{navigation : navigation}} 
         options={{
           tabBarLabel: 'Ingresos',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="currency-usd" color={color} size={size} />
           ),
         }}
       />
@@ -56,7 +58,7 @@ const BottomTab = ({navigation}) => {
         options={{
           tabBarLabel: 'Balance',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="scale-balance" color={color} size={size} />
           ),
         }}
       />
