@@ -1,16 +1,53 @@
-import React, {  useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {Container,View,Button} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity, Image } from "react-native";
 import {Context as AuthContext} from "../providers/AuthContext";
+import {Context as GastoContext} from "../providers/GastoContext";
+import {Context as IngresoContext} from "../providers/IngresoContext";
 
 const { width, height } = Dimensions.get("window");
 
 const mainScreen = ({ navigation }) => { 
 
-  const { signout } = useContext(AuthContext);
+  const { signout,state } = useContext(AuthContext);
+  const {state: ingresoState, getIngresos } = useContext(IngresoContext);
+  const {state: gastoState, getGastos } = useContext(GastoContext);
+
+  useEffect(() => {
+    getIngresos(state.user.id);
+    getGastos(state.user.id);
+
+  }, [state]);
+  var gastos= gastoState.gastos;
+  var ingresos= ingresoState.ingresos;
+
+  var montos = [];
+  var montosIngreso = [];
+
+  montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+  montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+
+  const sumaGasto = montos.reduce((a, b) => Number(a) + Number(b),0);
+  const sumaIngreso = montosIngreso.reduce((a, b) => Number(a) + Number(b),0);
+
+  const calculos =() =>{
+    if(sumaGasto <= 0 && sumaIngreso <= 0){
+      var estado = "Agrega ingresos y gastos para ver tu estado";
+    }
+    else
+    if(sumaGasto > sumaIngreso ){
+      var estado = "Has excedido tu presupuesto";
+    }
+    else
+    if(sumaGasto <= sumaIngreso ){
+      var estado = "Saludable";
+    }
+    return estado;
+  };
+  
        return (
             <Container style={styles.Fondo}  >
                  <LinearGradient 
@@ -24,8 +61,12 @@ const mainScreen = ({ navigation }) => {
                         <MaterialIcons name="logout" size={30} color="black" />
                       </TouchableOpacity>
 
-                        <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
-                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
+                        <Text style={styles.textoTitulo}>¡Bienvenido {state.user.fullname} ! </Text>
+                        <Text>Ingresos: {sumaIngreso} </Text> 
+                        <Text>Gastos: {sumaGasto} </Text> 
+                        <Text>Estado:{calculos()} </Text> 
+
+                        {/*<Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 
@@ -37,7 +78,7 @@ const mainScreen = ({ navigation }) => {
                         <Button  style={styles.botonBalance} onPress={() => navigation.navigate("balance")}>
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>
-                        </Button> 
+                        </Button>  */} 
                     </View>
                   </LinearGradient>
                   
@@ -106,7 +147,7 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:50,
+  marginTop:30,
   color:"#FFFFFF",
   fontSize:40,
   fontWeight:"bold",

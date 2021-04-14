@@ -28,7 +28,7 @@ const balance = ({ navigation }) => {
     getIngresos(state.user.id);
     getGastos(state.user.id);
 
-  }, []);
+  }, [state]);
 
   var gastos= gastoState.gastos;
   var ingresos= ingresoState.ingresos;
@@ -61,6 +61,20 @@ const balance = ({ navigation }) => {
       legendFontSize: 15
     }
   ];
+
+  const calculos =() =>{
+    if(resta == 0 && gastos > 0  && ingresos > 0){
+      var estado = "Has completado tu presupuesto";
+    }
+    if(resta > 0 ){
+      var estado = ` Te quedan ${resta} de tu presupuesto` ;
+    }
+    if(resta < 0 ){
+      var estado = "Te has pasado de tu presupesto";
+    }
+    return estado;
+  };
+   
        return (
             <Container style={styles.Fondo}  >
                 
@@ -101,22 +115,10 @@ const balance = ({ navigation }) => {
                     </View>
 
                     }
-    
-                    {
-                      resta < 0 ?  
-                      <Text  style={styles.h2}>Te has pasado de tu presupuesto </Text>
-                        : null
-                    }
-                    {
-                      resta > 0 ?  
-                      <Text style={styles.h2}>Te quedan {resta} de tu presupuesto</Text>
-                        : null
-                    }
-                     {
-                      resta = 0 ?  
-                      <Text ></Text>
-                        : null
-                    }
+
+
+                      <Text  style={styles.h2}>{calculos()} </Text>
+
                  
                 </LinearGradient>
                 
@@ -143,7 +145,13 @@ const styles = StyleSheet.create({
       color: '#FFFFFF',
       fontWeight:"bold",
   },
-
+  h2:{
+    fontSize: 33,
+    textAlign:"center",
+    marginTop: 10,
+    color: '#FFFFFF',
+    fontWeight:"bold",
+},
     advertencia:{
       fontSize: 30,
       textAlign:"center",
