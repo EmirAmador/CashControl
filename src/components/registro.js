@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState,useContext } from "react";
 import { StyleSheet, View ,Dimensions } from "react-native";
 import { Input,Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -7,6 +7,8 @@ import { validate } from "email-validator";
 import Alert from "../components/shared/Shared";
 //import Button  from "../components/Button";
 const { width, height } = Dimensions.get("window");
+import {Context as AuthContext} from "../providers/AuthContext";
+
 
 const FormRegistro = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
@@ -18,6 +20,9 @@ const FormRegistro = ({ navigation }) => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [error, setError] = useState("");
+
+
+ 
 
   // Verifica que los datos ingresados sean correctos
   const handleVerify = (input) => {
@@ -43,6 +48,8 @@ const FormRegistro = ({ navigation }) => {
     }
   };
 
+  const { state} = useContext(AuthContext);
+
   const handleSignup = () => {
     firebase
       .auth()
@@ -67,7 +74,7 @@ const FormRegistro = ({ navigation }) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate("mainScreen");
+            navigation.navigate("login");
           })
           .catch((error) => {
             console.log(error);

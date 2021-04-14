@@ -1,6 +1,6 @@
 import React, { useEffect, useState ,useContext} from "react";
-import {View,Icon,Fab, Header, Left, Right, Body} from "native-base";
-import { StyleSheet, Text,Dimensions, Image} from "react-native";
+import {View,Icon,Fab} from "native-base";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
 import {Context as AuthContext} from "../providers/AuthContext"

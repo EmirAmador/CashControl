@@ -16,6 +16,7 @@ import Modificar from "../components/shared/modificar";
         const [timestamp, setTimestamp] = useState("");
 
         const [errorDescripcion, setErrorDescripcion] = useState(false);
+        
           useEffect(() => {
             if (ingresoState.currentIngreso.id) {
               setDescripcion(ingresoState.currentIngreso.descripcion);
@@ -34,7 +35,6 @@ import Modificar from "../components/shared/modificar";
             navigation.goBack();
           };
           
-//console.log(gastoState.currentGasto.id);
             return (
                 <Container style={styles.Fondo}  >
                      <LinearGradient 

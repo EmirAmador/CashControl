@@ -1,12 +1,13 @@
 import React  from "react";
 import { Dimensions, StyleSheet } from "react-native";
-import { Card,Text,View,Item,Input,Button} from "native-base";
+import { Text,View,Item,Input,Button} from "native-base";
 const { width, height } = Dimensions.get("window");
 import { FontAwesome5 } from '@expo/vector-icons';
+import * as Font from 'expo-font';
 
 const Modificar = ({handleSave,descripcion,setDescripcion,monto,setMonto, errorDescripcion}) => {
 
-
+  
     return (
         
         <View style={styles.viewStyle}>

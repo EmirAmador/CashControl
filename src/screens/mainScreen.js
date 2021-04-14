@@ -60,7 +60,7 @@ const mainScreen = ({ navigation }) => {
                       <TouchableOpacity style={styles.logout} onPress={() => signout()}>
                         <MaterialIcons name="logout" size={30} color="black" />
                       </TouchableOpacity>
-                        <Text style={styles.textoTitulo}>¡Bienvenido {state.user.fullname} ! </Text>
+                        <Text style={styles.textoTitulo}>¡Bienvenid@ {state.user.fullname}! </Text>
                         <Card style={styles.card}>
 
                         <Text style={styles.h2}>Ingresos: L. {sumaIngreso}  </Text> 
@@ -68,19 +68,7 @@ const mainScreen = ({ navigation }) => {
                         <Text style={styles.h2}>Estado: {calculos()} </Text> 
                         </Card>
 
-                        {/*<Button  style={styles.botonIngresos} onPress={() => navigation.navigate("listadoIngresos")}> 
-                          <MaterialIcons name="attach-money" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Ingresos</Text>
-                        </Button> 
-                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate('listadoGastos')}>
-                          <MaterialIcons name="money-off" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Gastos</Text>
-                        </Button> 
                         
-                        <Button  style={styles.botonBalance} onPress={() => navigation.navigate("balance")}>
-                          <MaterialIcons name="account-balance" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Balance</Text>
-                        </Button>  */} 
                     </View>
                   </LinearGradient>
                   

@@ -1,12 +1,12 @@
 import React, {useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Item,Input,Icon, Left,Button,Content,Spinner} from "native-base";
+import {Container,View} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
-import * as Font from "expo-font";
 import { Context as GastoContext } from "../providers/GastoContext";
 import {Context as AuthContext} from "../providers/AuthContext";
 import Modificar from "../components/shared/modificar";
+import * as Font from 'expo-font';
 
 
  const modificarGasto  = ({navigation }) =>{ 
@@ -19,7 +19,8 @@ import Modificar from "../components/shared/modificar";
 
         const [errorDescripcion, setErrorDescripcion] = useState(false);
 
-
+        
+        
           useEffect(() => {
             if (gastoState.currentGasto.id) {
               setDescripcion(gastoState.currentGasto.descripcion);
@@ -39,7 +40,6 @@ import Modificar from "../components/shared/modificar";
           };
 
           
-//console.log(gastoState.currentGasto.id);
             return (
                 <Container style={styles.Fondo}  >
                   
