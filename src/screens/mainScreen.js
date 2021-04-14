@@ -54,11 +54,17 @@ const mainScreen = ({ navigation }) => {
                      colors={['#480048','#C04848']} 
                      style={styles.LinearGradient}
                      start={{ x: 0, y: 1 }}
-                     end={{ x: 1, y: 0 }}> 
-                     <View style={styles.view}></View>
+                     end={{ x: 1, y: 0 }}>
+                       
+                     <View style={styles.view}>
+                     <View> 
+                       <Image source={require("../../assets/logoSinFondo.png")} style={styles.logoImage} />
+                      </View>
+                     </View>
                     <View  >
+                    
                       <TouchableOpacity style={styles.logout} onPress={() => signout()}>
-                        <MaterialIcons name="logout" size={30} color="black" />
+                        <MaterialIcons name="logout" size={45} color="black" />
                       </TouchableOpacity>
                         <Text style={styles.textoTitulo}>¡Bienvenid@ {state.user.fullname}! </Text>
                         <Card style={styles.card}>
@@ -87,14 +93,20 @@ const styles = StyleSheet.create({
       width: width
       
     },
+    logoImage: {
+      width: width * 0.6,
+      height: 50,
+      marginTop: 50,
+      marginLeft: 0,
+      left:-40,
+    },
     h2:{
-      fontSize: 22,
+      fontSize: 20,
       textAlign:"left",
       marginTop: 30,
       marginLeft:25,
       color: '#FFFFFF',
       fontWeight:"bold",
-      fontFamily: "Arial, Helvetica, sans-serif",
  
   },
   card:{
@@ -168,7 +180,8 @@ textoTitulo:{
 },
 
 view: {
-  height: 20
+  height: 20,
+  left:0,
 },
 
 });
