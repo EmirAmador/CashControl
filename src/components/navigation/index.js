@@ -32,7 +32,7 @@ const Navigation = () => {
             <BottomTab></BottomTab>
             
             ) : (
-              <Stack.Navigator>
+              <Stack.Navigator screenOptions={{ headerShown: false }} >
                     <Stack.Screen name="login" component={login} />
                     <Stack.Screen name="registro" component={registro}  />
                 </Stack.Navigator>
