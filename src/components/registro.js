@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState,useContext } from "react";
 import { StyleSheet, View ,Dimensions } from "react-native";
 import { Input,Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -7,6 +7,8 @@ import { validate } from "email-validator";
 import Alert from "../components/shared/Shared";
 //import Button  from "../components/Button";
 const { width, height } = Dimensions.get("window");
+import {Context as AuthContext} from "../providers/AuthContext";
+
 
 const FormRegistro = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
@@ -18,6 +20,9 @@ const FormRegistro = ({ navigation }) => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [error, setError] = useState("");
+
+
+ 
 
   // Verifica que los datos ingresados sean correctos
   const handleVerify = (input) => {
@@ -43,6 +48,8 @@ const FormRegistro = ({ navigation }) => {
     }
   };
 
+  const { state} = useContext(AuthContext);
+
   const handleSignup = () => {
     firebase
       .auth()
@@ -67,7 +74,7 @@ const FormRegistro = ({ navigation }) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate("mainScreen");
+            navigation.navigate("login");
           })
           .catch((error) => {
             console.log(error);
@@ -81,7 +88,7 @@ const FormRegistro = ({ navigation }) => {
     <View>
       {error ? <Alert type="error" title={error} /> : null}
       <Input
-        placeholder="Full name"
+        placeholder="Nombre"
         leftIcon={<Icon name="user" />}
         value={fullname}
         onChangeText={setFullname}
@@ -93,7 +100,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Email"
+        placeholder="Correo"
         leftIcon={<Icon name="envelope" />}
         value={email}
         onChangeText={setEmail}
@@ -106,7 +113,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Password"
+        placeholder="Contraseña"
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
@@ -122,7 +129,7 @@ const FormRegistro = ({ navigation }) => {
         }
       />
       <Input
-        placeholder="Confirm password"
+        placeholder="Confirmar Contraseña"
         leftIcon={<Icon name="lock" />}
         value={confirmPassword}
         onChangeText={setConfirmPassword}

@@ -1,68 +1,65 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
+import React, {  useEffect ,useContext} from "react";
+import {View,Icon,Fab} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScrollView } from "react-native-gesture-handler";
-import { ContextoIngresos } from "../Context/ingresoContext";
 const { width, height } = Dimensions.get("window");
-import { MaterialIcons } from '@expo/vector-icons';
+import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as IngresoContext } from "../providers/IngresoContext";
+import Toast from "react-native-toast-message";
+import ListaIngreso from "../components/shared/ListaIngreso";
+import agregarIngreso from './agregarIngreso';
 
-const listadoIngresos = ({ navigation }) => { 
-    const {ingresos} = useContext(ContextoIngresos);
-    var montos = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
-    
-    var suma = 0;
-    montos ? montos.forEach(function(monto){
-        suma += monto;
-    }):null; 
+const listadoIngresos = ({ navigation }) => {
+
+    const { state} = useContext(AuthContext);
+    const {state: ingresoState, getIngresos , clearMessage} = useContext(IngresoContext);
+
+    useEffect(() => {
+        getIngresos(state.user.id);
+      }, [state]);
+
+      useEffect(() => {
+        if (ingresoState.errorMessage) {
+          Toast.show({
+            text2: ingresoState.errorMessage,
+          });
+          clearMessage();
+        }
+      }, [ingresoState.errorMessage]);
+
        return (
-            <Container style={styles.fondo}>
+             <>
+                <Toast ref={(ref) => Toast.setRef(ref)} />
+
                 <LinearGradient 
-                    colors={['#480048','#C04848']} 
-                    style={styles.LinearGradient}
-                    start={{ x: 0, y: 1 }}
-                    end={{ x: 1, y: 0 }}> 
+                   colors={['#480048','#C04848']} 
+                   style={styles.linearGradient}
+                   start={{ x: 0, y: 1 }}
+                   end={{ x: 1, y: 0 }}> 
+                   <View style={styles.view}></View>
                    <View>
-                        
                         
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
-                       
-                       <Card style={styles.lista}>
-                           <ScrollView>
-                              <List>
-                              {ingresos ? 
-                                    ingresos.map((ingreso) => (
-                                        <ListItem key={ingreso.id.toString()} 
-                                         onPress={() => {      
-                                            navigation.navigate("modificarIngreso", { id: ingreso.id });
-                                        }}>
-                                            <Left><Text>{ingreso.descripcion}</Text></Left>
-                                            <Body><Text>L. {ingreso.monto} </Text></Body> 
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right>   
-                                        </ListItem>
-                                    ))
-                                    : null}
-                              </List>
-     
-                            </ScrollView>
-                            
-                        </Card>
+                        <ListaIngreso navigation={navigation} ingresos={ingresoState.ingresos} />
+
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#C70039" }}
+                            style={{ backgroundColor: "#b5124e" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarIngreso")
                             }}
+                            
                             >
                             <Icon name="plus" type="FontAwesome" />
                         </Fab>
                     </View>
+                    
                 </LinearGradient>
-            </Container>
-        );                  
+            </>
+        );                 
 }
 
 const styles = StyleSheet.create({
@@ -77,23 +74,21 @@ const styles = StyleSheet.create({
       width: width
       
     },
-
-    header: {
-        backgroundColor: '#3CCCD6',
-    },
-
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 100,
+        marginTop: 5,
+        marginBottom: 5,
         color: '#ffffff',
+        fontWeight:"bold",
     },
 
     divisor:{
-        borderBottomColor: '#000000',
+        borderBottomColor: '#fff',
         borderBottomWidth: 2,
         width: width * 0.9,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom: 6 
     },
 
     texto: {
@@ -125,11 +120,8 @@ const styles = StyleSheet.create({
         top: 500
     },
 
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 40,
-        marginLeft:19,
+    view: {
+        height: 60
     },
 });
 

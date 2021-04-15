@@ -1,17 +1,26 @@
-import React, { useState,useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState,useEffect,useContext } from "react";
+import { StyleSheet, View } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
-import { firebase } from "../firebase";
 import Alert from "../components/shared/Shared";
+import {Context as AuthContext} from "../providers/AuthContext"
 
-const SigninForm = ({ navigation }) => {
+const SigninForm = () => {
+  const { state, signin, clearErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (state.errorMessage) clearErrorMessage();
+  }, []);
+
+  useEffect(() => {
+    if (state.errorMessage) setError(state.errorMessage);
+  }, [state.errorMessage]);
 
   // Verifica que se ingresan los datos del email y el password
   const handleVerify = (input) => {
@@ -26,39 +35,9 @@ const SigninForm = ({ navigation }) => {
   };
 
   const handleSignin = () => {
+    // Iniciar sesión implementado el Contexto de autenticación
+    signin(email, password);
     
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        // Obtener el Unique Identifier generado para cada usuario
-        // Firebase -> Authentication
-        
-        const uid = response.user.uid;
-        console.log(uid);
-        // Obtener la colección desde Firebase
-        const usersRef = firebase.firestore().collection("users");
-
-        // Verificar que el usuario existe en Firebase authentication
-        // y también está almacenado en la colección de usuarios.
-        usersRef
-          .doc(uid)
-          .get()
-          .then((firestoreDocument) => {
-            if (!firestoreDocument.exists) {
-              setError("User does not exist in the database!");
-              return;
-            }
-
-            // Obtener la información del usuario y enviarla a la pantalla Home
-            const user = firestoreDocument.data();
-
-            navigation.navigate("mainScreen", { user });
-          });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
   };
 
   return (
@@ -82,6 +61,7 @@ const SigninForm = ({ navigation }) => {
         placeholder="Contraseña"
         leftIcon={<Icon name="lock" />}
         value={password}
+        secureTextEntry
         onChangeText={setPassword}
         onBlur={() => {
           handleVerify("password");

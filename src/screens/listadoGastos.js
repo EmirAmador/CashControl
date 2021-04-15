@@ -1,232 +1,60 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,Right,Button,Card,ListItem,Fab,Left,Body,List} from "native-base";
-import { StyleSheet, Text,Dimensions, Image} from "react-native";
+import React, { useEffect, useState ,useContext} from "react";
+import {View,Icon,Fab} from "native-base";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScrollView } from "react-native-gesture-handler";
-import { ContextoGastos } from "../Context/ContextoGasto";
 const { width, height } = Dimensions.get("window");
-import { MaterialIcons } from '@expo/vector-icons';
+import {Context as AuthContext} from "../providers/AuthContext"
+import {Context as GastoContext } from "../providers/GastoContext";
+import Toast from "react-native-toast-message";
+import ListaGasto from "../components/shared/ListaGasto"
 
 const listadoGastos = ({ navigation }) => { 
-    const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,
-           gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);
-    var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
-    
-    
-    var suma = 0;
-    montos ? montos.forEach(function(monto){
-        suma += monto;
-    }):null; 
-   console.log(suma);
+    const { state} = useContext(AuthContext);
+    const {state: gastoState, getGastos , clearMessage} = useContext(GastoContext);
 
+    useEffect(() => {
+        getGastos(state.user.id);
+      }, [state]);
+
+      useEffect(() => {
+        if (gastoState.errorMessage) {
+          Toast.show({
+            text2: gastoState.errorMessage,
+          });
+          clearMessage();
+        }
+      }, [gastoState.errorMessage]);
+    
        return (
-            <Container style={styles.fondo}>
+            <>
+                <Toast ref={(ref) => Toast.setRef(ref)} />
+                
                 <LinearGradient 
                    colors={['#480048','#C04848']} 
                    style={styles.LinearGradient}
                    start={{ x: 0, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
+                   <View style={styles.view}></View>
                    <View>
-                        
+                    
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
-                       
-                       <Card style={styles.lista}>
-                           <ScrollView>
-                              <List>
-                              {gastosAlimentacion != "" ?
-                                    <ListItem itemDivider style={styles.item}  >
-                                        <Text style={styles.textItem}>Alimentacion</Text>
-                                    </ListItem>
-                                    :null
-                                  }
-                                    
-                                {gastosAlimentacion
-                         
-                                    ? 
-                                    
-                                    gastosAlimentacion.map((alimento) => (
-                                        <ListItem key={alimento.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: alimento.id });
-                                        }}>
-                                            <Left><Text>{alimento.descripcion}</Text></Left> 
-                                            <Body><Text> {alimento.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
- 
-                                        </ListItem>
-                                    ))
-                                    : null}
+                        <ListaGasto navigation={navigation} gastos={gastoState.gastos} />
 
-                                  {gastosVivienda != "" ?
-                                    <ListItem itemDivider style={styles.item}>
-                                        <Text style={styles.textItem}>Vivienda</Text>
-                                    </ListItem>
-                                  :null}  
-                                 
-                                 {gastosVivienda
-                         
-                                    ? gastosVivienda.map((vivienda) => (
-                                        <ListItem key={vivienda.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: vivienda.id });
-                                        }}>
-                                            <Left><Text>{vivienda.descripcion}</Text></Left> 
-                                            <Body><Text> {vivienda.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null}
-
-                                {gastosTrasporte != "" ? 
-                                    <ListItem itemDivider style={styles.item}>
-                                        <Text style={styles.textItem}>Trasporte</Text>
-                                    </ListItem>
-                                    :null}
-
-                                 {gastosTrasporte
-                         
-                                    ? gastosTrasporte.map((transporte) => (
-                                        <ListItem key={transporte.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: transporte.id });
-                                        }}>
-                                            <Left><Text>{transporte.descripcion}</Text></Left> 
-                                            <Body><Text> {transporte.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null} 
-                                {gastosSalud != "" ?
-                                     <ListItem itemDivider style={styles.item}>
-                                        <Text style={styles.textItem}>Salud</Text>
-                                    </ListItem>
-                                :null}
-                               
-                                 {gastosSalud
-                         
-                                    ? gastosSalud.map((salud) => (
-                                        <ListItem key={salud.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: salud.id });
-                                        }}>
-                                            <Left><Text>{salud.descripcion}</Text></Left> 
-                                            <Body><Text> {salud.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null}  
-
-                                 {gastosEntretenimiento != "" ?
-                                    <ListItem itemDivider style={styles.item}>
-                                        <Text style={styles.textItem}>Entretenimiento</Text>
-                                    </ListItem>
-                                 :null}
-                                 
-                                 {gastosEntretenimiento
-                         
-                                    ? gastosEntretenimiento.map((entretenimiento) => (
-                                        <ListItem key={entretenimiento.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: entretenimiento.id });
-                                        }}>
-                                            <Left><Text>{entretenimiento.descripcion}</Text></Left> 
-                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null}    
-
-                                {gastosVestuario != "" ?
-                                    <ListItem itemDivider style={styles.item}>
-                                        <Text style={styles.textItem}>Vestuario</Text>
-                                    </ListItem>
-                                :null}
-                                
-                                 {gastosVestuario
-                         
-                                    ? gastosVestuario.map((vestuario) => (
-                                        <ListItem key={vestuario.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: vestuario.id });
-                                        }}>
-                                            <Left><Text>{vestuario.descripcion}</Text></Left> 
-                                            <Body><Text> {vestuario.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null}     
-
-                                    {gastosEducacion != "" ?
-                                         <ListItem itemDivider style={styles.item}>
-                                            <Text style={styles.textItem}>Educacion</Text>
-                                        </ListItem>
-                                    :null}
-                                 
-                                 {gastosEducacion
-                         
-                                    ? gastosEducacion.map((educacion) => (
-                                        <ListItem key={educacion.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: educacion.id });
-                                        }}>
-                                            <Left><Text>{educacion.descripcion}</Text></Left> 
-                                            <Body><Text> {educacion.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-                                        </ListItem>
-                                    ))
-                                    : null}         
-
-                                {gastosOtros != "" ?
-                                <ListItem itemDivider style={styles.item}>
-                                    <Text style={styles.textItem}>Otros</Text>
-                                </ListItem>
-                                :null}
-                                
-                                 {gastosOtros
-                         
-                                    ? gastosOtros.map((otros) => (
-                                        <ListItem key={otros.id.toString()}
-                                        onPress={() => {                                            
-                                            navigation.navigate("modificarGasto", { id: otros.id });
-                                        }}>
-                                            <Left><Text>{otros.descripcion}</Text></Left> 
-                                            <Body><Text> {otros.monto}</Text></Body>  
-                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
-
-
-                                        </ListItem>
-                                    ))
-                                    : null}
-                              </List>
-                                 </ScrollView>
-                           
-                        </Card>
                         <Fab
                             active={true}
                             position="bottomRight"
-                            style={{ backgroundColor: "#ff0023" }}
+                            style={{ backgroundColor: "#b5124e" }}
                             direction="up"
                             onPress={() => {
                                 navigation.navigate("agregarGasto")
                             }}
                             >
                             <Icon name="plus" type="FontAwesome" />
-                        </Fab>
+                        </Fab> 
                     </View>
                 </LinearGradient>
-            </Container>
+            </>
         );                  
 }
 
@@ -237,28 +65,27 @@ const styles = StyleSheet.create({
       height: height,
     },
   
-    linearGradient: {
+    LinearGradient: {
       height: height,
       width: width
       
     },
 
-    header: {
-        backgroundColor: '#3CCCD6',
-    },
-
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 80,
+        marginTop: 5,
+        marginBottom: 5,
         color: '#FFFFFF',
+        fontWeight:"bold",
     },
 
     divisor:{
         borderBottomColor: '#FFFFFF',
         borderBottomWidth: 2,
         width: width * 0.9,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom: 5 
     },
 
     texto: {
@@ -290,11 +117,8 @@ const styles = StyleSheet.create({
         top: 500
     },
 
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 40,
-        marginLeft:19,
+    view: {
+        height: 60
     },
 });
 

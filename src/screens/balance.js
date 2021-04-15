@@ -1,9 +1,11 @@
-import React, {  useContext} from "react";
-import {Container,View,Header,Button, Left} from "native-base";
+import React, { useEffect, useContext} from "react";
+import {Container,View,Button} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
-//import { ContextoGastos } from "../src/context/movimientosContext";
-//import { ContextoIngresos } from "../src/context/ingresoContext";
+import {Context as GastoContext } from "../providers/GastoContext";
+import {Context as AuthContext} from "../providers/AuthContext";
+import {Context as IngresoContext} from "../providers/IngresoContext"
+import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window");
@@ -18,25 +20,32 @@ const chartConfig = {
   };
 
 const balance = ({ navigation }) => { 
-  /*const {gastos} = useContext(ContextoGastos);
-  const {ingresos} = useContext(ContextoIngresos);
+  const { state} = useContext(AuthContext);
+  const {state: gastoState, getGastos} = useContext(GastoContext);
+  const {state: ingresoState, getIngresos} = useContext(IngresoContext);
+  
+  useEffect(() => {
+    getIngresos(state.user.id);
+    getGastos(state.user.id);
 
-  var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
-  var montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+  }, [state]);
 
-    
-    var sumaGasto = 0;
-    montos ? montos.forEach(function(monto){
-        sumaGasto += monto;
-    }):null; 
+  var gastos= gastoState.gastos;
+  var ingresos= ingresoState.ingresos;
 
-    var sumaIngreso = 0;
-    montosIngreso ? montosIngreso.forEach(function(monto){
-        sumaIngreso += monto;
-    }):null; 
+  var montos = [];
+  var montosIngreso = [];
 
-     var resta = sumaIngreso - sumaGasto; 
-  const data = [
+  montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+  montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+
+
+    const sumaGasto = montos.reduce((a, b) => Number(a) + Number(b),0);
+    const sumaIngreso = montosIngreso.reduce((a, b) => Number(a) + Number(b),0);
+
+
+     var resta = montosIngreso - montos; 
+    const data = [
     {
       name: "Ingresos",
       population: sumaIngreso,
@@ -51,7 +60,21 @@ const balance = ({ navigation }) => {
       legendFontColor: "black",
       legendFontSize: 15
     }
-  ];*/
+  ];
+
+  const calculos =() =>{
+    if(resta == 0 && gastos > 0  && ingresos > 0){
+      var estado = "Has completado tu presupuesto";
+    }
+    if(resta > 0 ){
+      var estado = ` Te quedan ${resta} de tu presupuesto` ;
+    }
+    if(resta < 0 ){
+      var estado = "Te has pasado de tu presupesto";
+    }
+    return estado;
+  };
+   
        return (
             <Container style={styles.Fondo}  >
                 
@@ -64,7 +87,7 @@ const balance = ({ navigation }) => {
                     <Text style={styles.h1}>Balance</Text>
                     <View style={styles.divisor}/>
                     {
-                      ingresos,gastos <= 0 ?
+                      gastos <= 0 ?
                       <View>
                         <Text style={styles.advertencia}>Registra tus ingresos y gastos para ver Balance</Text>
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
@@ -92,23 +115,13 @@ const balance = ({ navigation }) => {
                     </View>
 
                     }
-    
-                    {
-                      resta < 0 ?  
-                      <Text  style={styles.h2}>Te has pasado de tu presupesto </Text>
-                        : null
-                    }
-                    {
-                      resta > 0 ?  
-                      <Text style={styles.h2}>Te quedan {resta} de tu presupuesto</Text>
-                        : null
-                    }
-                     {
-                      resta = 0 ?  
-                      <Text ></Text>
-                        : null
-                    }
+
+
+                      <Text  style={styles.h2}>{calculos()} </Text>
+
+                 
                 </LinearGradient>
+                
             </Container>
         );                  
 }
@@ -119,31 +132,26 @@ const styles = StyleSheet.create({
     height: height,
     },
   
-    linearGradient: {
+    LinearGradient: {
       height: height,
       width: width
       
     },
 
-    header: {
-        backgroundColor: '#3CCCD6',
-    },
-
     h1:{
-        fontSize: 33,
-        textAlign:"center",
-        marginTop: 12,
-        color: '#236266',
-        
-    },
-
-    h2:{
       fontSize: 33,
       textAlign:"center",
-      marginTop: 12,
+      marginTop: 100,
       color: '#FFFFFF',
-    },
-
+      fontWeight:"bold",
+  },
+  h2:{
+    fontSize: 33,
+    textAlign:"center",
+    marginTop: 10,
+    color: '#FFFFFF',
+    fontWeight:"bold",
+},
     advertencia:{
       fontSize: 30,
       textAlign:"center",
@@ -152,34 +160,11 @@ const styles = StyleSheet.create({
     },
 
     divisor:{
-      borderBottomColor: '#236266',
+      borderBottomColor: '#fff',
       borderBottomWidth: 2,
       width: width * 0.9,
       alignSelf: "center"
     },
-
-    texto: {
-        textAlign: "center",
-        marginTop: 20,
-        color: "white",
-        fontSize: 25,
-    },
-
-    icono: {
-        color: "white",
-        fontSize: 35,
-        paddingBottom:35
-    },
-
-    boton: {
-        alignContent:"center",
-        backgroundColor: "#31898F",
-        borderRadius: 40,
-        marginLeft: 290,
-        position: "absolute",
-        top: 500
-    },
-
     view: {
         backgroundColor: "white",
         marginTop: 15,
@@ -216,12 +201,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
     },
 
-    logoImage: {
-        width: width * 0.1,
-        height: 50,
-        marginTop: 10,
-        marginLeft: 19,
-    },
+    
  });
 
 export default balance;

@@ -1,12 +1,11 @@
-import { Input, Item, Text } from "native-base";
-import React, { Component, useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet,Dimensions, Image,TouchableOpacity} from "react-native";
-import {Container,View,Header} from "native-base";
+import {Container,View} from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
 import PasswordForm from "../components/passwordForm";
 const { width, height } = Dimensions.get("window");
 
-const forgotPassword = ({ navigation, route }) => {
+const forgotPassword = ({ navigation }) => {
     
     return(
         <Container style={styles.Fondo}  >
